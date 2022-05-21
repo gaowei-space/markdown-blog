@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{ .Title }}</title>
+
+	<link rel="stylesheet" href="/static/css/github-markdown-css/github-markdown-dark.css">
+	<link rel="stylesheet" href="/static/css/main.css">
+	<link rel="stylesheet" href="/static/css/gitbook-theme/style.css?1">
+	<link rel="stylesheet" href="/static/css/gitbook-theme/website.css">
+	<link rel="stylesheet" href="/static/css/gitbook-theme/chapter-fold.css">
+	<link rel="stylesheet" href="/static/css/gitbook-theme/splitter.css">
+	<link rel="stylesheet" href="/static/css/highlight-theme/a11y-dark.css">
+</head>
+<body>
+	<div class="book with-summary font-size-2 font-family-0 color-theme-2">
+		<div class="book-summary">
+			<p class="logo" role="logo"><center>Logo</center></p>
+			<nav role="navigation">{{ render "web/views/layouts/nav.html" }}</nav>
+		</div>
+		<div class="book-body">
+			<div class="body-inner">
+				{{ render "web/views/layouts/header.html" }}
+				<div class="page-wrapper" tabindex="-1" role="main">
+					<div class="page-inner">
+						<article class="markdown-body">
+							<!-- Render the current template here -->
+							{{ yield }}
+						</article>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer>{{ render "web/views/layouts/footer.html" }}</footer>
+	</div>
+</body>
+<script src="/static/js/highlight.js"></script>
+<script src="/static/js/jQuery.js"></script>
+<script src="/static/js/splitter.js?2"></script>
+<script src="/static/js/chapter-fold.js?1"></script>
+<script src="/static/js/main.js"></script>
+</html>
