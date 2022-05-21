@@ -179,8 +179,8 @@ run() {
 
 package_markdownblog() {
     BINARY_NAME='markdown-blog'
-    MAIN_FILE="./cmd/markdown-blog.go"
-    INCLUDE_FILE=()
+    MAIN_FILE="./markdown-blog.go"
+    INCLUDE_FILE=("./web")
 
 
     run
