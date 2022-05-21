@@ -6,7 +6,7 @@
 
 2. 解压
 ```
-tar xvzf markdown-blog-v0.0.1-linux-arm64.tar.gz
+tar zxf markdown-blog-v0.0.1-linux-arm64.tar.gz
 ```
 
 3. 创建 markdown 文件目录
