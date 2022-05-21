@@ -16,9 +16,9 @@ import (
 )
 
 var (
-	WebTitle    = "Go'Blog"
 	MdDir       string
 	Env         string
+	Title       string
 	Index       = "index"
 	LayoutFile  = "web/views/layouts/layout.html"
 	ArticlesDir = "cache/articles/"
@@ -32,6 +32,7 @@ const DefaultPort = 5006
 func initParams(ctx *cli.Context) {
 	MdDir = ctx.String("dir")
 	Env = ctx.String("env")
+	Title = ctx.String("title")
 }
 
 func setLog(app *iris.Application) {
@@ -70,7 +71,7 @@ func RunWeb(ctx *cli.Context) {
 	app.OnErrorCode(iris.StatusInternalServerError, internalServerError)
 
 	app.Use(func(ctx iris.Context) {
-		ctx.ViewData("Title", WebTitle)
+		ctx.ViewData("Title", Title)
 		ctx.ViewData("Nav", nav(ctx))
 		ctx.ViewData("ActiveNav", getActiveNav(ctx))
 		ctx.ViewLayout(LayoutFile)

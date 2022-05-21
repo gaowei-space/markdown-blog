@@ -11,6 +11,7 @@ import (
 
 var (
 	MdDir                = "md/"
+	Title                = "Blog"
 	AppVersion           = "0.0.1"
 	BuildDate, GitCommit string
 )
@@ -26,8 +27,8 @@ type navItem struct {
 
 func main() {
 	cliApp := cli.NewApp()
-	cliApp.Name = "GoBlog"
-	cliApp.Usage = "GoBlog Service"
+	cliApp.Name = "markdown-blog"
+	cliApp.Usage = "Markdown Blog Service"
 	cliApp.Version, _ = utils.FormatAppVersion(AppVersion, GitCommit, BuildDate)
 	cliApp.Commands = getCommands()
 	cliApp.Flags = append(cliApp.Flags, []cli.Flag{}...)
@@ -47,6 +48,11 @@ func getCommands() []cli.Command {
 				Name:  "dir,d",
 				Value: MdDir,
 				Usage: "markdown files dir",
+			},
+			cli.StringFlag{
+				Name:  "title,t",
+				Value: Title,
+				Usage: "blog title, default is Blog",
 			},
 			cli.IntFlag{
 				Name:  "port,p",
