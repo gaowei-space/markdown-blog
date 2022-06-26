@@ -19,7 +19,7 @@ var (
 	MdDir       string
 	Env         string
 	Title       string
-	Index       = "index"
+	Index       = "主页"
 	LayoutFile  = "web/views/layouts/layout.html"
 	ArticlesDir = "cache/articles/"
 	LogsDir     = "cache/logs/"
