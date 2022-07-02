@@ -4,6 +4,8 @@
 
 ## 示例
 > https://blog.gaowei.tech
+<img width="1617" alt="image" src="https://user-images.githubusercontent.com/10205742/176992945-6016193f-e27e-4b19-bf5d-27ff4dfe1fdc.png">
+
 
 ## 支持平台
 > Windows、Linux、Mac OS
@@ -45,8 +47,12 @@
 > 博客导航默认按照`字典`排序，可以通过 `@` 前面的数字来自定义顺序
 
 ##### 个人博客目录示例：
+<img width="390" alt="image" src="https://user-images.githubusercontent.com/10205742/176992908-affe01b6-0a50-488b-bb67-216a75f2a02c.png">
+
 
 ##### 博客导航展示如图：
+<img width="407" alt="image" src="https://user-images.githubusercontent.com/10205742/176992913-148a5ba5-bce0-42ed-b09a-9f914556723a.png">
+
 
 
 ## 开发
