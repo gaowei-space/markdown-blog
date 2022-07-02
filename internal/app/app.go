@@ -2,8 +2,10 @@ package app
 
 import (
 	"os"
+	"path"
 	"path/filepath"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/fatih/structs"
@@ -19,7 +21,7 @@ var (
 	MdDir       string
 	Env         string
 	Title       string
-	Index       = "主页"
+	Index       = ""
 	LayoutFile  = "web/views/layouts/layout.html"
 	ArticlesDir = "cache/articles/"
 	LogsDir     = "cache/logs/"
@@ -118,6 +120,9 @@ func nav(ctx iris.Context) []map[string]interface{} {
 	for _, v := range tree.Children {
 		for _, item := range v.Children {
 			list = append(list, structs.Map(item))
+			if Index == "" && !item.IsDir {
+				Index = strings.TrimSuffix(item.Name, path.Ext(item.Name))
+			}
 		}
 	}
 
