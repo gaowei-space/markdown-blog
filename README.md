@@ -11,7 +11,9 @@
 ## 案例
 - [TechMan'Blog](https://blog.gaowei.tech)
 
-    <img width="1617" alt="image" src="https://user-images.githubusercontent.com/10205742/176992945-6016193f-e27e-4b19-bf5d-27ff4dfe1fdc.png">
+## 界面
+
+<img width="1617" alt="image" src="https://user-images.githubusercontent.com/10205742/176992945-6016193f-e27e-4b19-bf5d-27ff4dfe1fdc.png">
 
 
 ## 支持平台
