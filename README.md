@@ -5,12 +5,13 @@
 [![Latest Release](https://img.shields.io/github/v/release/gaowei-space/markdown-blog)](https://github.com/gaowei-space/markdown-blog/releases)
 [![GitHub license](https://img.shields.io/github/license/gaowei-space/markdown-blog)](https://github.com/gaowei-space/markdown-blog/blob/main/LICENSE)
 
-这是一个基于 `Golang` 开发的**静态Markdown博客**程序
-> 如果你和我一样，平时喜欢使用`markdown`文件来记录自己的工作与生活中的点滴，又希望把这些记录生成个人博客，那[markdown-blog](https://github.com/gaowei-space/markdown-blog)再适合不过了，它部署简单，可以把markdown文件快速变为个人博客，不需要再次登录什么后台来进行二次发布。它简洁、轻快，部署简单，无需后台发布，所见即所得，等你体验。
+[Markdown-Blog](https://github.com/gaowei-space/markdown-blog) 是一款小而美的**Markdown静态博客**程序
+> 如果你和我一样，平时喜欢使用`markdown`文件来记录自己的工作与生活中的点滴，又希望把这些记录生成个人博客，那[Markdown-Blog](https://github.com/gaowei-space/markdown-blog)再适合不过了。它简洁、轻快，部署简单，可以把markdown文件快速变为个人博客，它不需要管理后台，无需进行文章的二次发布。
 
-## 示例
-> https://blog.gaowei.tech
-<img width="1617" alt="image" src="https://user-images.githubusercontent.com/10205742/176992945-6016193f-e27e-4b19-bf5d-27ff4dfe1fdc.png">
+## 案例
+- [TechMan'Blog](https://blog.gaowei.tech)
+
+    <img width="1617" alt="image" src="https://user-images.githubusercontent.com/10205742/176992945-6016193f-e27e-4b19-bf5d-27ff4dfe1fdc.png">
 
 
 ## 支持平台
