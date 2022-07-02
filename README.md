@@ -1,6 +1,12 @@
-# mardown-blog
+# Markdown-Blog
+[![GitHub issues](https://img.shields.io/github/issues/gaowei-space/markdown-blog)](https://github.com/gaowei-space/markdown-blog/issues)
+[![GitHub branch checks state](https://img.shields.io/github/checks-status/gaowei-space/meituan-pub-union/main)](https://github.com/gaowei-space/markdown-blog/tree/main)
+[![StyleCI](https://github.styleci.io/repos/494669204/shield?branch=main)](https://github.styleci.io/repos/494669204?branch=main?style=flat)
+[![Latest Release](https://img.shields.io/github/v/release/gaowei-space/markdown-blog)](https://github.com/gaowei-space/markdown-blog/releases)
+[![GitHub license](https://img.shields.io/github/license/gaowei-space/markdown-blog)](https://github.com/gaowei-space/markdown-blog/blob/main/LICENSE)
+
 这是一个基于 `Golang` 开发的**静态Markdown博客**程序
-> 如果你和我一样，平时喜欢使用`markdown`文件来记录自己的工作与生活中的点滴，又希望把这些记录生成个人博客，那[mardown-blog](https://github.com/gaowei-space/markdown-blog)再适合不过了，它部署简单，可以把markdown文件快速变为个人博客，不需要再次登录什么后台来进行二次发布。它简洁、轻快，部署简单，无需后台发布，所见即所得，等你体验。
+> 如果你和我一样，平时喜欢使用`markdown`文件来记录自己的工作与生活中的点滴，又希望把这些记录生成个人博客，那[markdown-blog](https://github.com/gaowei-space/markdown-blog)再适合不过了，它部署简单，可以把markdown文件快速变为个人博客，不需要再次登录什么后台来进行二次发布。它简洁、轻快，部署简单，无需后台发布，所见即所得，等你体验。
 
 ## 示例
 > https://blog.gaowei.tech
