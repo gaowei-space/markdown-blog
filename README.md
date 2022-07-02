@@ -50,17 +50,17 @@
 ### 导航排序
 > 博客导航默认按照`字典`排序，可以通过 `@` 前面的数字来自定义顺序
 
-#### 个人博客目录示例：
+#### 个人博客目录示例
 <img width="390" alt="image" src="https://user-images.githubusercontent.com/10205742/176992908-affe01b6-0a50-488b-bb67-216a75f2a02c.png">
 
 
-#### 博客导航展示如图：
+#### 博客导航展示如图
 <img width="407" alt="image" src="https://user-images.githubusercontent.com/10205742/176992913-148a5ba5-bce0-42ed-b09a-9f914556723a.png">
 
 ### 部署
 > Nginx 反向代理配置文件参考
 
-#### HTTP协议 80端口
+#### HTTP协议
 ```
 server {
     listen      80;
@@ -75,7 +75,7 @@ server {
      }
 }
 ```
-#### HTTPS 协议配置，80端口自动跳转至443
+#### HTTPS 协议（80端口自动跳转至443）
 ```
 server {
     listen      80;
