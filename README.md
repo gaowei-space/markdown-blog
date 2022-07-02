@@ -1,6 +1,6 @@
 # mardown-blog
 这是一个基于 `Golang` 开发的**静态Markdown博客**程序
-> 如果你和我一样，平时喜欢使用`markdown`文件来记录自己的工作与生活中的点滴，又希望把这些记录生成个人博客，那[mardown-blog](https://github.com/gaowei-space/markdown-blog)再适合不过了，它部署简单，可以把markdown文件快速变为个人博客。它简洁、轻快，部署简单，等你体验。
+> 如果你和我一样，平时喜欢使用`markdown`文件来记录自己的工作与生活中的点滴，又希望把这些记录生成个人博客，那[mardown-blog](https://github.com/gaowei-space/markdown-blog)再适合不过了，它部署简单，可以把markdown文件快速变为个人博客，不需要再次登录什么后台来进行二次发布。它简洁、轻快，部署简单，无需后台发布，所见即所得，等你体验。
 
 ## 示例
 > https://blog.gaowei.tech
@@ -136,3 +136,5 @@ server {
     ```shell
     make package-all
     ```
+## 授权许可
+本项目采用 MIT 开源授权许可证，完整的授权说明已放置在 LICENSE 文件中。
