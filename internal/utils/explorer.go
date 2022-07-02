@@ -26,10 +26,12 @@ type Option struct {
 	IgnoreFile []string `yaml:"ignoreFile"` // 忽略文件
 }
 
+var Index Node
+
 // Explorer 遍历多个目录
 //     option : 遍历选项
 //     tree : 遍历结果
-func Explorer(option Option) (Node, error) {
+func Explorer(option Option) (Node, Node, error) {
 	// 根节点
 	var root Node
 
@@ -48,8 +50,7 @@ func Explorer(option Option) (Node, error) {
 
 		root.Children = append(root.Children, &child)
 	}
-
-	return root, nil
+	return root, Index, nil
 }
 
 // 递归遍历目录
@@ -61,16 +62,6 @@ func explorerRecursive(node *Node, option *Option) {
 	if err != nil {
 		log.Println(err)
 		return
-	}
-
-	// 目录（或文件）名
-	node.Name = p.Name()
-	// 访问路径
-	node.Link = strings.TrimPrefix(strings.TrimSuffix(path.Join(node.Path, p.Name()), path.Ext(p.Name())), "md")
-	// 目录或文件名（不包含后缀）
-	node.ShowName = strings.TrimSuffix(p.Name(), path.Ext(p.Name()))
-	if strings.Index(node.ShowName, "@") != -1 {
-		node.ShowName = node.ShowName[strings.Index(node.ShowName, "@")+1:]
 	}
 	// 是否为目录
 	node.IsDir = p.IsDir()
@@ -93,6 +84,8 @@ func explorerRecursive(node *Node, option *Option) {
 		var child Node
 		// 完整子目录
 		child.Path = tmp
+		// 目录（或文件）名
+		child.Name = f.Name()
 		// 访问路径
 		child.Link = strings.TrimPrefix(strings.TrimSuffix(tmp, path.Ext(f.Name())), "md")
 		// 目录或文件名（不包含后缀）
@@ -116,15 +109,10 @@ func explorerRecursive(node *Node, option *Option) {
 		} else { // 文件
 			// 非忽略文件，添加到结果中
 			if !IsInSlice(option.IgnoreFile, f.Name()) {
-				child.Name = f.Name()
-				// 访问路径
-				child.Link = strings.TrimPrefix(strings.TrimSuffix(tmp, path.Ext(f.Name())), "md")
-				// 目录或文件名（不包含后缀）
-				child.ShowName = strings.TrimSuffix(f.Name(), path.Ext(f.Name()))
-				if strings.Index(child.ShowName, "@") != -1 {
-					child.ShowName = child.ShowName[strings.Index(child.ShowName, "@")+1:]
-				}
 				node.Children = append(node.Children, &child)
+				if Index.Path == "" && child.Path != "" {
+					Index = child
+				}
 			}
 		}
 	}

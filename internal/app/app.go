@@ -2,7 +2,6 @@ package app
 
 import (
 	"os"
-	"path"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -111,18 +110,20 @@ func nav(ctx iris.Context) []map[string]interface{} {
 	option.SubFlag = true
 	option.IgnorePath = []string{}
 	option.IgnoreFile = []string{`.DS_Store`}
-	tree, err := utils.Explorer(option)
+	tree, index, err := utils.Explorer(option)
 	if err != nil {
 		ctx.Application().Logger().Infof("Nav list error: %s", err)
+	}
+
+	if Index == "" {
+		ctx.Application().Logger().Infof("index link: %s name: %s path: %s", index.Link, index.Name, index.Path)
+		Index = strings.TrimPrefix(index.Link, "/")
 	}
 
 	list := make([]map[string]interface{}, 0)
 	for _, v := range tree.Children {
 		for _, item := range v.Children {
 			list = append(list, structs.Map(item))
-			if Index == "" && !item.IsDir {
-				Index = strings.TrimSuffix(item.Name, path.Ext(item.Name))
-			}
 		}
 	}
 
