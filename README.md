@@ -22,7 +22,7 @@
     ```shell
     cd markdown-blog-linux-arm64
     mkdir md
-    echo "### Hello World" > ./md/hello.md
+    echo "### Hello World" > ./md/主页.md
     ```
 
 4. 运行
@@ -43,6 +43,9 @@
    - --port value, -p value   web服务端口，默认：5006
    - --env value, -e value    运行环境, 可选：dev,test,prod，默认："prod"
    - -h                       查看版本
+
+### 首页配置
+> 程序默认读取文件名为 **主页.md** 作为首页
 
 ### 导航排序
 > 博客导航默认按照`字典`排序，可以通过 `@` 前面的数字来自定义顺序
