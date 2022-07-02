@@ -1,6 +1,6 @@
 # mardown-blog
-这是一个实验性的，基于 `Golang` 开发的静态 **Markdown博客** 程序
-> 如果你和我一样，平时喜欢使用`markdown`来记录自己的工作与生活中的点滴，又希望把这些记录生成个人博客，那`mardown-blog`再适合不过了，它部署简单，可以把md文件快速变为个人博客。该程序的优点：简洁、轻快，安全，等你体验。
+这是一个基于 `Golang` 开发的**静态Markdown博客**程序
+> 如果你和我一样，平时喜欢使用`markdown`文件来记录自己的工作与生活中的点滴，又希望把这些记录生成个人博客，那[mardown-blog](https://github.com/gaowei-space/markdown-blog)再适合不过了，它部署简单，可以把markdown文件快速变为个人博客。它简洁、轻快，部署简单，等你体验。
 
 ## 示例
 > https://blog.gaowei.tech
@@ -22,6 +22,7 @@
     ```shell
     cd markdown-blog-linux-arm64
     mkdir md
+    echo "### Hello World" > ./md/hello.md
     ```
 
 4. 运行
