@@ -34,6 +34,7 @@ func initParams(ctx *cli.Context) {
 	MdDir = ctx.String("dir")
 	Env = ctx.String("env")
 	Title = ctx.String("title")
+	Index = ctx.String("index")
 }
 
 func setLog(app *iris.Application) {
@@ -71,11 +72,16 @@ func RunWeb(ctx *cli.Context) {
 	app.OnErrorCode(iris.StatusNotFound, notFound)
 	app.OnErrorCode(iris.StatusInternalServerError, internalServerError)
 
+	setIndexAuto := false
+	if Index == "" {
+		setIndexAuto = true
+	}
+
 	app.Use(func(ctx iris.Context) {
 		navs, firstNav := getNavs()
 
 		firstLink := strings.TrimPrefix(firstNav.Link, "/")
-		if Index == "" || Index != firstLink {
+		if setIndexAuto && Index != firstLink {
 			Index = firstLink
 		}
 

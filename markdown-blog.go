@@ -64,6 +64,11 @@ func getCommands() []cli.Command {
 				Value: "prod",
 				Usage: "runtime environment, dev|test|prod",
 			},
+			cli.StringFlag{
+				Name:  "index,i",
+				Value: "",
+				Usage: "home page, default is empty",
+			},
 		},
 	}
 
