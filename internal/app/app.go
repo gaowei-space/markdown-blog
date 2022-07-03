@@ -20,7 +20,7 @@ var (
 	MdDir       string
 	Env         string
 	Title       string
-	Index       = ""
+	Index       string
 	LayoutFile  = "web/views/layouts/layout.html"
 	ArticlesDir = "cache/articles/"
 	LogsDir     = "cache/logs/"
@@ -119,20 +119,16 @@ func getNavs() ([]map[string]interface{}, utils.Node) {
 	option.IgnoreFile = []string{`.DS_Store`}
 	tree, _ := utils.Explorer(option)
 
-	list := make([]map[string]interface{}, 0)
-	var firstNav utils.Node
-
+	navs := make([]map[string]interface{}, 0)
 	for _, v := range tree.Children {
 		for _, item := range v.Children {
-			list = append(list, structs.Map(item))
-
-			if firstNav.Link == "" {
-				firstNav = getFirstNav(*item)
-			}
+			navs = append(navs, structs.Map(item))
 		}
 	}
 
-	return list, firstNav
+	firstNav := getFirstNav(*tree.Children[0])
+
+	return navs, firstNav
 }
 
 func getFirstNav(node utils.Node) utils.Node {
