@@ -1,6 +1,9 @@
 .logo{
     padding: 0 8px;
 }
+.logo a {
+    color: white;
+}
 .markdown-body {
     background-color: #1c1f2b;
 }
