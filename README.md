@@ -21,7 +21,7 @@
 
 2. 解压
     ```shell
-    tar zxf markdown-blog-v0.0.1-linux-arm64.tar.gz
+    tar zxf markdown-blog-v0.0.2-linux-arm64.tar.gz
     ```
 
 3. 创建 markdown 文件目录
@@ -132,13 +132,13 @@ server {
     ```
 
 5. 打包
-    > 在 markdown-blog-package 生成当前系统的压缩包 markdown-blog-v0.0.1-darwin-arm64.tar
+    > 在 markdown-blog-package 生成当前系统的压缩包 markdown-blog-v0.0.2-darwin-arm64.tar
     ```shell
     make package
     ```
 
 6. 生成 Windows、Linux、Mac 的压缩包
-    > 在 markdown-blog-package 生成压缩包 markdown-blog-v0.0.1-darwin-arm64.tar markdown-blog-v0.0.1-linux-arm64.tar.gz markdown-blog-v0.0.1-windows-arm64.zip
+    > 在 markdown-blog-package 生成压缩包 markdown-blog-v0.0.2-darwin-arm64.tar markdown-blog-v0.0.2-linux-arm64.tar.gz markdown-blog-v0.0.2-windows-arm64.zip
     ```shell
     make package-all
     ```
