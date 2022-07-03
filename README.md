@@ -48,10 +48,11 @@
    - --title value, -t value  web服务标题，默认："Blog"
    - --port value, -p value   web服务端口，默认：5006
    - --env value, -e value    运行环境, 可选：dev,test,prod，默认："prod"
+   - --index value, -i value  设置默认首页的文件名称, 默认为空
    - -h                       查看版本
 
-### 首页配置
-> 程序默认读取文件名为 **主页.md** 作为首页
+### 关于默认首页
+> 如果启动是未指定`index`，程序默认以导航中的第一个文件作为首页
 
 ### 导航排序
 > 博客导航默认按照`字典`排序，可以通过 `@` 前面的数字来自定义顺序
