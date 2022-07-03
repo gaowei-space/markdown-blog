@@ -4,6 +4,7 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/fatih/structs"
@@ -70,9 +71,14 @@ func RunWeb(ctx *cli.Context) {
 	app.OnErrorCode(iris.StatusNotFound, notFound)
 	app.OnErrorCode(iris.StatusInternalServerError, internalServerError)
 
-	navs := getNavs()
-
 	app.Use(func(ctx iris.Context) {
+		navs, firstNav := getNavs()
+
+		firstLink := strings.TrimPrefix(firstNav.Link, "/")
+		if Index == "" || Index != firstLink {
+			Index = firstLink
+		}
+
 		ctx.ViewData("Title", Title)
 		ctx.ViewData("Nav", navs)
 		ctx.ViewData("ActiveNav", getActiveNav(ctx))
@@ -105,7 +111,7 @@ func parsePort(ctx *cli.Context) int {
 	return port
 }
 
-func getNavs() []map[string]interface{} {
+func getNavs() ([]map[string]interface{}, utils.Node) {
 	var option utils.Option
 	option.RootPath = []string{MdDir}
 	option.SubFlag = true
@@ -114,13 +120,26 @@ func getNavs() []map[string]interface{} {
 	tree, _ := utils.Explorer(option)
 
 	list := make([]map[string]interface{}, 0)
+	var firstNav utils.Node
+
 	for _, v := range tree.Children {
 		for _, item := range v.Children {
 			list = append(list, structs.Map(item))
+
+			if firstNav.Link == "" {
+				firstNav = getFirstNav(*item)
+			}
 		}
 	}
 
-	return list
+	return list, firstNav
+}
+
+func getFirstNav(node utils.Node) utils.Node {
+	if !node.IsDir {
+		return node
+	}
+	return getFirstNav(*node.Children[0])
 }
 
 func getActiveNav(ctx iris.Context) string {
