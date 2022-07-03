@@ -4,7 +4,6 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
-	"strings"
 	"time"
 
 	"github.com/fatih/structs"
@@ -71,9 +70,11 @@ func RunWeb(ctx *cli.Context) {
 	app.OnErrorCode(iris.StatusNotFound, notFound)
 	app.OnErrorCode(iris.StatusInternalServerError, internalServerError)
 
+	navs := getNavs()
+
 	app.Use(func(ctx iris.Context) {
 		ctx.ViewData("Title", Title)
-		ctx.ViewData("Nav", nav(ctx))
+		ctx.ViewData("Nav", navs)
 		ctx.ViewData("ActiveNav", getActiveNav(ctx))
 		ctx.ViewLayout(LayoutFile)
 
@@ -104,21 +105,13 @@ func parsePort(ctx *cli.Context) int {
 	return port
 }
 
-func nav(ctx iris.Context) []map[string]interface{} {
+func getNavs() []map[string]interface{} {
 	var option utils.Option
 	option.RootPath = []string{MdDir}
 	option.SubFlag = true
 	option.IgnorePath = []string{}
 	option.IgnoreFile = []string{`.DS_Store`}
-	tree, index, err := utils.Explorer(option)
-	if err != nil {
-		ctx.Application().Logger().Infof("Nav list error: %s", err)
-	}
-
-	if Index == "" {
-		ctx.Application().Logger().Infof("index link: %s name: %s path: %s", index.Link, index.Name, index.Path)
-		Index = strings.TrimPrefix(index.Link, "/")
-	}
+	tree, _ := utils.Explorer(option)
 
 	list := make([]map[string]interface{}, 0)
 	for _, v := range tree.Children {

@@ -26,12 +26,10 @@ type Option struct {
 	IgnoreFile []string `yaml:"ignoreFile"` // 忽略文件
 }
 
-var Index Node
-
 // Explorer 遍历多个目录
 //     option : 遍历选项
 //     tree : 遍历结果
-func Explorer(option Option) (Node, Node, error) {
+func Explorer(option Option) (Node, error) {
 	// 根节点
 	var root Node
 
@@ -50,7 +48,8 @@ func Explorer(option Option) (Node, Node, error) {
 
 		root.Children = append(root.Children, &child)
 	}
-	return root, Index, nil
+
+	return root, nil
 }
 
 // 递归遍历目录
@@ -110,9 +109,6 @@ func explorerRecursive(node *Node, option *Option) {
 			// 非忽略文件，添加到结果中
 			if !IsInSlice(option.IgnoreFile, f.Name()) {
 				node.Children = append(node.Children, &child)
-				if Index.Path == "" && child.Path != "" {
-					Index = child
-				}
 			}
 		}
 	}
