@@ -121,8 +121,8 @@ func getNavs() ([]map[string]interface{}, utils.Node) {
 	var option utils.Option
 	option.RootPath = []string{MdDir}
 	option.SubFlag = true
-	option.IgnorePath = []string{}
-	option.IgnoreFile = []string{`.DS_Store`}
+	option.IgnorePath = []string{`.git`}
+	option.IgnoreFile = []string{`.DS_Store`, `.gitignore`, `README.md`}
 	tree, _ := utils.Explorer(option)
 
 	navs := make([]map[string]interface{}, 0)
