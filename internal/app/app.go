@@ -1,6 +1,7 @@
 package app
 
 import (
+	"log"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -32,6 +33,9 @@ const DefaultPort = 5006
 
 func initParams(ctx *cli.Context) {
 	MdDir = ctx.String("dir")
+	if strings.TrimSpace(MdDir) == "" {
+		log.Panic("Markdown files folder cannot be empty")
+	}
 	MdDir, _ = filepath.Abs(MdDir)
 
 	Env = ctx.String("env")

@@ -93,7 +93,7 @@ func explorerRecursive(node *Node, option *Option) {
 		child.Name = f.Name()
 		// 访问路径
 		child.Link = strings.TrimPrefix(strings.TrimSuffix(tmp, path.Ext(f.Name())), CurDirPath)
-		log.Println(child.Link)
+
 		// 目录或文件名（不包含后缀）
 		child.ShowName = strings.TrimSuffix(f.Name(), path.Ext(f.Name()))
 		if strings.Index(child.ShowName, "@") != -1 {

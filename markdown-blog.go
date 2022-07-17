@@ -41,7 +41,7 @@ func main() {
 func getCommands() []cli.Command {
 	command := cli.Command{
 		Name:   "web",
-		Usage:  "run web server",
+		Usage:  "Run blog web server",
 		Action: app.RunWeb,
 		Flags: []cli.Flag{
 			cli.StringFlag{
