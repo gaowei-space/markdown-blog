@@ -12,7 +12,7 @@ import (
 var (
 	MdDir                = "md/"
 	Title                = "Blog"
-	AppVersion           = "0.0.2"
+	AppVersion           = "0.0.3"
 	BuildDate, GitCommit string
 )
 
