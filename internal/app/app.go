@@ -32,6 +32,8 @@ const DefaultPort = 5006
 
 func initParams(ctx *cli.Context) {
 	MdDir = ctx.String("dir")
+	MdDir, _ = filepath.Abs(MdDir)
+
 	Env = ctx.String("env")
 	Title = ctx.String("title")
 	Index = ctx.String("index")
@@ -154,7 +156,7 @@ func getActiveNav(ctx iris.Context) string {
 
 func show(ctx iris.Context) {
 	f := getActiveNav(ctx)
-	mdfile := MdDir + f + ".md"
+	mdfile := MdDir + "/" + f + ".md"
 	articlefile := ArticlesDir + f + ".html"
 
 	_, err := os.Stat(mdfile)

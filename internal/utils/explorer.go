@@ -26,6 +26,9 @@ type Option struct {
 	IgnoreFile []string `yaml:"ignoreFile"` // 忽略文件
 }
 
+// 当前再循环的Dir路径
+var CurDirPath string
+
 // Explorer 遍历多个目录
 //     option : 遍历选项
 //     tree : 遍历结果
@@ -41,8 +44,11 @@ func Explorer(option Option) (Node, error) {
 		}
 
 		var child Node
+
 		// 目录路径
+		CurDirPath = p
 		child.Path = p
+
 		// 递归
 		explorerRecursive(&child, &option)
 
@@ -86,7 +92,8 @@ func explorerRecursive(node *Node, option *Option) {
 		// 目录（或文件）名
 		child.Name = f.Name()
 		// 访问路径
-		child.Link = strings.TrimPrefix(strings.TrimSuffix(tmp, path.Ext(f.Name())), "md")
+		child.Link = strings.TrimPrefix(strings.TrimSuffix(tmp, path.Ext(f.Name())), CurDirPath)
+		log.Println(child.Link)
 		// 目录或文件名（不包含后缀）
 		child.ShowName = strings.TrimSuffix(f.Name(), path.Ext(f.Name()))
 		if strings.Index(child.ShowName, "@") != -1 {
