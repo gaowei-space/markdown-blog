@@ -32,6 +32,13 @@
 
     // restore split state from sessionStorage
     splitState = getSplitState();
+
+    // 根据缓存来判断当前页面展开的状态
+    // 因为刷新之后，with-summary默认存在，这里需要根据状态做调整
+    if (splitState.bookBodyOffset === 0) {
+        $book.removeClass('with-summary');
+    }
+
     setSplitState(
         splitState.summaryWidth,
         splitState.summaryOffset,
@@ -90,11 +97,10 @@
     });
 
     function getSplitState() {
-        var splitState = JSON.parse(sessionStorage.getItem(KEY_SPLIT_STATE));
-        splitState || (splitState = {});
-        splitState.summaryWidth || (splitState.summaryWidth = $summary.outerWidth());
-        splitState.summaryOffset || (splitState.summaryOffset = $summary.position().left);
-        splitState.bookBodyOffset || (splitState.bookBodyOffset = $bookBody.position().left);
+        var splitState = JSON.parse(sessionStorage.getItem(KEY_SPLIT_STATE)) || {};
+        splitState.summaryWidth !== undefined || (splitState.summaryWidth = $summary.outerWidth());
+        splitState.summaryOffset !== undefined || (splitState.summaryOffset = $summary.position().left);
+        splitState.bookBodyOffset !== undefined || (splitState.bookBodyOffset = $bookBody.position().left);
         return splitState;
     }
 
