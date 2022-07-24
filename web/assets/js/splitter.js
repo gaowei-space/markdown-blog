@@ -3,15 +3,17 @@
     // Gitbook is calculated as "calc (100% - 60px)" in the horizontal width when the width of the screen size is 600px
     // or less.
     // In this case, since contradiction occurs in the implementation of this module, return.
+
     if ($(window).width() <= 600) {
+        $('.toggle-summary').on('click', function () {
+            $('.book').toggleClass('with-summary', !$('.book').hasClass("with-summary"));
+        });
         return;
     }
 
     var KEY_SPLIT_STATE = 'plugin_gitbook_split';
 
-    var dividerWidth = null;
     var isDraggable = false;
-    var dividerCenterOffsetLeft = null;
     var splitState = null;
     var grabPointWidth = null;
 
@@ -27,17 +29,11 @@
 
     $summary.append($divider);
 
-    dividerWidth = $divider.outerWidth();
-    dividerCenterOffsetLeft = $divider.outerWidth() / 2;
+    // init sidebar
+    initSidebar();
 
     // restore split state from sessionStorage
     splitState = getSplitState();
-
-    // 根据缓存来判断当前页面展开的状态
-    // 因为刷新之后，with-summary默认存在，这里需要根据状态做调整
-    if (splitState.bookBodyOffset === 0) {
-        $book.removeClass('with-summary');
-    }
 
     setSplitState(
         splitState.summaryWidth,
@@ -49,13 +45,12 @@
         var $toggleSummary = $('.toggle-summary');
 
         $toggleSummary.on('click', function () {
+            $book.removeClass("without-animation");
 
             var summaryOffset = null;
             var bookBodyOffset = null;
 
-            var isOpen = $book.hasClass('with-summary');
-
-            if (isOpen) {
+            if (isOpen()) {
                 summaryOffset = -($summary.outerWidth());
                 bookBodyOffset = 0;
                 $book.removeClass('with-summary');
@@ -95,6 +90,30 @@
         $summary.outerWidth(event.pageX + grabPointWidth);
         $bookBody.offset({ left: event.pageX + grabPointWidth });
     });
+
+    function isOpen() {
+        return $book.hasClass("with-summary");
+    }
+
+    function toggleSidebar(value, toggle) {
+        if (!(null != sessionStorage.getItem("sidebar") && isOpen() == value)) {
+            if (null == toggle) {
+                /** @type {boolean} */
+                toggle = true;
+            }
+            $book.toggleClass("without-animation", !toggle);
+            $book.toggleClass("with-summary", value);
+            sessionStorage.setItem("sidebar", isOpen());
+        }
+    }
+
+    function initSidebar() {
+        toggleSidebar(sessionStorage.getItem("sidebar", true), false);
+
+        $(document).on("click", ".book-summary li.chapter a", function () {
+            toggleSidebar(false, false);
+        });
+    }
 
     function getSplitState() {
         var splitState = JSON.parse(sessionStorage.getItem(KEY_SPLIT_STATE)) || {};
