@@ -25,6 +25,9 @@
 /*
  * Theme 2
  */
+.color-theme-2 {
+    background: #1c1f2b;
+}
 .color-theme-2 .dropdown-menu {
     background-color: #2d3143;
     border-color: #272a3a;
