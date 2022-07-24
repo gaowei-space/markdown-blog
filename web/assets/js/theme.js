@@ -4,22 +4,10 @@
     }
 
     var $book = $(".book");
-    var $summary = $('.book-summary');
 
     setTimeout(function () {
-        var $toggleSummary = $('.toggle-summary');
-        $toggleSummary.on('click', function () {
-            var summaryOffset = null;
-            var bookBodyOffset = null;
-            if (isOpen()) {
-                summaryOffset = -($summary.outerWidth());
-                bookBodyOffset = 0;
-                $book.removeClass('with-summary');
-            } else {
-                summaryOffset = 0;
-                bookBodyOffset = $summary.outerWidth();
-                $book.addClass('with-summary');
-            }
+        $('.toggle-summary').on('click', function () {
+            $book.toggleClass('with-summary', !isOpen());
         });
     }, 1);
 
