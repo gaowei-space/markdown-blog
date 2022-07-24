@@ -10,7 +10,14 @@
 
 ## 案例
 > [TechMan'Blog](https://blog.gaowei.tech)
-<img width="1617" alt="image" src="https://user-images.githubusercontent.com/10205742/176992945-6016193f-e27e-4b19-bf5d-27ff4dfe1fdc.png">
+
+- PC端
+<img alt="PC端" src="https://user-images.githubusercontent.com/10205742/176992945-6016193f-e27e-4b19-bf5d-27ff4dfe1fdc.png">
+
+- 移动端
+
+<img alt="移动端" src="https://user-images.githubusercontent.com/10205742/180644851-e3760085-9668-4675-9bab-65c361dd5195.jpeg">
+
 
 
 ## 支持平台
