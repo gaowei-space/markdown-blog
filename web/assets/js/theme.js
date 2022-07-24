@@ -4,14 +4,9 @@
     }
 
     var $book = $(".book");
-
     setTimeout(function () {
         $('.toggle-summary').on('click', function () {
-            $book.toggleClass('with-summary', !isOpen());
+            $book.toggleClass('with-summary', $book.hasClass("with-summary"));
         });
     }, 1);
-
-    function isOpen() {
-        return $book.hasClass("with-summary");
-    }
 })();
