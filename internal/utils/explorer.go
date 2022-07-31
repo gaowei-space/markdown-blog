@@ -14,6 +14,7 @@ type Node struct {
 	ShowName string  `json:"showName"` // 目录或文件名（不包含后缀）
 	Path     string  `json:"path"`     // 目录或文件完整路径
 	Link     string  `json:"link"`     // 文件访问URI
+	Active   string  `json:"active"`   // 当前活跃的文件
 	Children []*Node `json:"children"` // 目录下的文件或子目录
 	IsDir    bool    `json:"isDir"`    // 是否为目录 true: 是目录 false: 不是目录
 }

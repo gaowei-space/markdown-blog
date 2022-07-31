@@ -84,7 +84,7 @@ func RunWeb(ctx *cli.Context) {
 	}
 
 	app.Use(func(ctx iris.Context) {
-		navs, firstNav := getNavs()
+		navs, firstNav := getNavs(getActiveNav(ctx))
 
 		firstLink := strings.TrimPrefix(firstNav.Link, "/")
 		if setIndexAuto && Index != firstLink {
@@ -99,14 +99,10 @@ func RunWeb(ctx *cli.Context) {
 		ctx.Next()
 	})
 
-	tmpl.AddFunc("inc", utils.Inc)
-
-	tmpl.AddFunc("getActive", utils.GetActive)
-
 	app.HandleDir("/static", AssetsDir)
 
-	// TODO 增加环境变量，获取缓存时间
-	app.Get("/{f:path}", iris.Cache(time.Minute*0), show)
+	// 增加环境变量，获取缓存时间
+	app.Get("/{f:path}", iris.Cache(time.Minute*3), show)
 
 	app.Run(iris.Addr(":" + strconv.Itoa(parsePort(ctx))))
 }
@@ -123,7 +119,7 @@ func parsePort(ctx *cli.Context) int {
 	return port
 }
 
-func getNavs() ([]map[string]interface{}, utils.Node) {
+func getNavs(activeNav string) ([]map[string]interface{}, utils.Node) {
 	var option utils.Option
 	option.RootPath = []string{MdDir}
 	option.SubFlag = true
@@ -134,6 +130,7 @@ func getNavs() ([]map[string]interface{}, utils.Node) {
 	navs := make([]map[string]interface{}, 0)
 	for _, v := range tree.Children {
 		for _, item := range v.Children {
+			searchActiveNav(item, activeNav)
 			navs = append(navs, structs.Map(item))
 		}
 	}
@@ -141,6 +138,18 @@ func getNavs() ([]map[string]interface{}, utils.Node) {
 	firstNav := getFirstNav(*tree.Children[0])
 
 	return navs, firstNav
+}
+
+func searchActiveNav(node *utils.Node, activeNav string) {
+	if !node.IsDir && node.Link == "/"+activeNav {
+		node.Active = "active"
+		return
+	}
+	if len(node.Children) > 0 {
+		for _, v := range node.Children {
+			searchActiveNav(v, activeNav)
+		}
+	}
 }
 
 func getFirstNav(node utils.Node) utils.Node {

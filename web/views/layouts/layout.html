@@ -20,7 +20,14 @@
 			<center>
 				<p class="logo" role="logo"><a href="">{{ .Title }}</a></p>
 			</center>
-			<nav role="navigation">{{ render "web/views/layouts/nav.html" }}</nav>
+			<nav role="navigation">
+				<ul class="summary">
+					{{range .Nav}}
+					{{ template "navs.html" .}}
+					{{end}}
+					<li class="divider"></li>
+				</ul>
+			</nav>
 		</div>
 		<div class="book-body">
 			<div class="body-inner">
@@ -44,3 +51,18 @@
 <script src="/static/js/splitter.js"></script>
 <script src="/static/js/main.js"></script>
 </html>
+{{ define "navs.html" }}
+<li class="chapter {{.Active}}">
+	<a href="{{.Link}}">
+		{{.ShowName}}
+		{{if .IsDir}}<i class="exc-trigger fa"></i>{{end}}
+	</a>
+	{{if .Children}}
+	<ul class="articles">
+		{{range .Children}}
+		{{ template "navs.html" . }}
+		{{end}}
+	</ul>
+	{{end}}
+</li>
+{{end}}
