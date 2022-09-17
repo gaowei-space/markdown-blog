@@ -1,6 +1,8 @@
 FROM golang:alpine as builder
+
 WORKDIR /Users/wei/Space/www/markdown-blog
-ENV GOPROXY=https://goproxy.cn
+ENV GOPROXY https://goproxy.cn,direct
+
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
   apk add --no-cache tzdata make
 COPY ./go.mod ./
@@ -12,4 +14,7 @@ RUN CGO_ENABLED=0 make build
 FROM scratch as runner
 COPY --from=builder /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 COPY --from=builder /Users/wei/Space/www/markdown-blog/bin/markdown-blog /opt/app/
-CMD ["/opt/app/markdown-blog"]
+
+EXPOSE 5006
+
+CMD ["/opt/app/markdown-blog", "web"]
