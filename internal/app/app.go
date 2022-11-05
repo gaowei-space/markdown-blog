@@ -13,7 +13,7 @@ import (
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/middleware/accesslog"
 	"github.com/microcosm-cc/bluemonday"
-	"github.com/russross/blackfriday"
+	"github.com/russross/blackfriday/v2"
 	"github.com/urfave/cli"
 )
 
@@ -26,6 +26,7 @@ var (
 	ArticlesDir = "cache/articles/"
 	LogsDir     = "cache/logs/"
 	AssetsDir   = "web/assets"
+	TocPrefix   = "[toc]"
 )
 
 // web服务器默认端口
@@ -179,24 +180,45 @@ func show(ctx iris.Context) {
 		return
 	}
 
-	content, err := os.ReadFile(mdfile)
+	bytes, err := os.ReadFile(mdfile)
 	if err != nil {
 		ctx.StatusCode(500)
 		ctx.Application().Logger().Errorf("ReadFile Error '%s', Path is %s", mdfile, ctx.Path())
 		return
 	}
 
-	os.MkdirAll(filepath.Dir(articlefile), 0777)
-
-	unsafe := blackfriday.MarkdownCommon(content)
-	html := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
-	if err := os.WriteFile(articlefile, html, 0777); err != nil {
+	if err := mdToHtml(bytes, articlefile); err != nil {
 		ctx.StatusCode(500)
 		ctx.Application().Logger().Errorf("WriteFile Error %s, Path is %s", err, ctx.Path())
 		return
 	}
 
 	ctx.View(articlefile)
+}
+
+func mdToHtml(content []byte, filename string) error {
+	os.MkdirAll(filepath.Dir(filename), 0777)
+
+	strs := string(content)
+
+	var htmlFlags blackfriday.HTMLFlags
+
+	if strings.HasPrefix(strs, TocPrefix) {
+		htmlFlags |= blackfriday.TOC
+		strs = strings.Replace(strs, TocPrefix, "<br/><br/>", 1)
+	}
+
+	renderer := blackfriday.NewHTMLRenderer(blackfriday.HTMLRendererParameters{
+		Flags: htmlFlags,
+	})
+
+	unsafe := blackfriday.Run([]byte(strs), blackfriday.WithRenderer(renderer))
+	html := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
+	if err := os.WriteFile(filename, html, 0777); err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func notFound(ctx iris.Context) {
