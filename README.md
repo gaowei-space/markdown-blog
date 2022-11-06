@@ -18,9 +18,9 @@
 
 
 ### 移动端
-<img width="800" alt="mobile white" src="https://user-images.githubusercontent.com/10205742/200173269-e625d235-4b4e-4d3a-b568-1974bea25b42.PNG">
+<img width="400" alt="mobile white" src="https://user-images.githubusercontent.com/10205742/200173269-e625d235-4b4e-4d3a-b568-1974bea25b42.PNG">
 
-<img width="800" alt="mobile white" src="https://user-images.githubusercontent.com/10205742/200173193-17689416-16a1-442c-bd8a-cf56d65b0986.PNG">
+<img width="400" alt="mobile white" src="https://user-images.githubusercontent.com/10205742/200173193-17689416-16a1-442c-bd8a-cf56d65b0986.PNG">
 
 
 
