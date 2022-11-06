@@ -34,7 +34,8 @@ package: build
 
 .PHONY: package-all
 package-all: build
-	bash ./package.sh -p 'linux darwin windows'
+	bash ./package.sh -p 'linux darwin windows' -a 'amd64 arm64'
+
 
 .PHONY: clean
 clean:
