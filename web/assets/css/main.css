@@ -1,9 +1,44 @@
+html,
+body {
+    scroll-behavior: smooth;
+}
+
 .logo {
     padding: 0 8px;
 }
+
 .logo a {
     color: white;
 }
+
 .theme-action i {
     font-size: 18px;
+}
+
+.book .navigation-go-top {
+    position: fixed;
+    right: 50px;
+    bottom: 68px;
+    background-color: #fafafa;
+    border: 1px solid rgba(0, 0, 0, .07);
+    border-radius: 1px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    background-clip: padding-box;
+    z-index: 999;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 8px 10px;
+    color: #364149;
+    opacity: 60%;
+}
+
+.book .navigation-go-top:hover {
+    opacity: 100%;
+}
+
+.book.color-theme-2 .navigation-go-top {
+    background-color: #2d3143;
+    border-color: #272a3a;
+    color: #bcc1d2;
 }
