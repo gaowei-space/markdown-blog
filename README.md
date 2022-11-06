@@ -15,7 +15,6 @@
 <img alt="PC端" src="https://user-images.githubusercontent.com/10205742/176992945-6016193f-e27e-4b19-bf5d-27ff4dfe1fdc.png">
 
 - 移动端
-
 <img alt="移动端" src="https://user-images.githubusercontent.com/10205742/180644851-e3760085-9668-4675-9bab-65c361dd5195.jpeg">
 
 
@@ -23,17 +22,23 @@
 ## 支持平台
 > Windows、Linux、Mac OS
 
+## 更新
+* `[v0.0.5]` 2022-11-06
+  - 支持 TOC 语法，当文件内容首行使用 `[toc]` 会自动解析
+  - 新增明亮🔆主题，支持明暗切换
+  - 其他已知问题修复
+
 ## 安装
 1. 下载 [release](https://github.com/gaowei-space/markdown-blog/releases/)
 
 2. 解压
     ```shell
-    tar zxf markdown-blog-v0.0.2-linux-arm64.tar.gz
+    tar zxf markdown-blog-v0.0.5-linux-amd64.tar.gz
     ```
 
 3. 创建 markdown 文件目录
     ```shell
-    cd markdown-blog-linux-arm64
+    cd markdown-blog-linux-amd64
     mkdir md
     echo "### Hello World" > ./md/主页.md
     ```
@@ -140,13 +145,13 @@ server {
     ```
 
 5. 打包
-    > 在 markdown-blog-package 生成当前系统的压缩包 markdown-blog-v0.0.2-darwin-arm64.tar
+    > 在 markdown-blog-package 生成当前系统的压缩包 markdown-blog-v0.0.5-darwin-amd64.tar
     ```shell
     make package
     ```
 
 6. 生成 Windows、Linux、Mac 的压缩包
-    > 在 markdown-blog-package 生成压缩包 markdown-blog-v0.0.2-darwin-arm64.tar markdown-blog-v0.0.2-linux-arm64.tar.gz markdown-blog-v0.0.2-windows-arm64.zip
+    > 在 markdown-blog-package 生成压缩包 markdown-blog-v0.0.5-darwin-amd64.tar markdown-blog-v0.0.5-linux-amd64.tar.gz markdown-blog-v0.0.5-windows-amd64.zip
     ```shell
     make package-all
     ```
