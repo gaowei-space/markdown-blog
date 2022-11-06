@@ -36,7 +36,6 @@ package: build
 package-all: build
 	bash ./package.sh -p 'linux darwin windows' -a 'amd64 arm64'
 
-
 .PHONY: clean
 clean:
 	rm bin/markdown-bolg
