@@ -69,6 +69,16 @@ func getCommands() []cli.Command {
 				Value: "",
 				Usage: "home page, default is empty",
 			},
+			cli.StringFlag{
+				Name:  "analyzer-baidu",
+				Value: "",
+				Usage: "Set up Baidu Analyzer, default is empty",
+			},
+			cli.StringFlag{
+				Name:  "analyzer-google",
+				Value: "",
+				Usage: "Set up Google Analyzer, default is empty",
+			},
 		},
 	}
 

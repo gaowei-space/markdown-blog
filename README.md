@@ -150,7 +150,7 @@ server {
     ```
 
 5. 打包
-    > 在 markdown-blog-package 生成当前系统的压缩包 markdown-blog-v0.0.5-darwin-amd64.tar
+    > 在 **package** 目录生成当前系统的压缩包 markdown-blog-v0.0.5-darwin-amd64.tar
     ```shell
     make package
     ```

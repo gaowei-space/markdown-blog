@@ -13,6 +13,32 @@
 	<link rel="stylesheet" href="/static/css/gitbook-theme/chapter-fold.css">
 	<link rel="stylesheet" href="/static/css/gitbook-theme/splitter.css">
 	<link rel="stylesheet" href="/static/css/highlight-theme/a11y-dark.css">
+
+	{{if .Analyzer.Baidu}}
+	<!-- Baidu analytics -->
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?{{.Analyzer.Baidu}}";
+		  var s = document.getElementsByTagName("script")[0];
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+	{{end}}
+
+	{{if .Analyzer.Google}}
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id={{.Analyzer.Google}}"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', '{{.Analyzer.Google}}');
+	</script>
+	{{end}}
+
 </head>
 <body>
 	<div class="book font-size-2 font-family-0 color-theme-2">
