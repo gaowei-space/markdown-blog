@@ -223,7 +223,7 @@ func mdToHtml(content []byte, filename string) error {
 		Flags: htmlFlags,
 	})
 
-	unsafe := blackfriday.Run([]byte(strs), blackfriday.WithRenderer(renderer))
+	unsafe := blackfriday.Run([]byte(strs), blackfriday.WithRenderer(renderer), blackfriday.WithExtensions(blackfriday.CommonExtensions))
 	html := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
 	if err := os.WriteFile(filename, html, 0777); err != nil {
 		return err
