@@ -180,6 +180,13 @@ server {
  }
  ```
 
+## 升级
+1. 下载最新版 [release](https://github.com/gaowei-space/markdown-blog/releases/)
+
+2. 停止程序，解压替换 `markdown-blog` 文件 和 `web` 文件夹
+
+3. 重新启动程序
+
 ## 开发
 1. 安装 `Golang` 开发环境
 
