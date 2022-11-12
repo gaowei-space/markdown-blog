@@ -52,7 +52,7 @@ func getCommands() []cli.Command {
 			cli.StringFlag{
 				Name:  "title,t",
 				Value: Title,
-				Usage: "Blog title, default is Blog",
+				Usage: "Blog title",
 			},
 			cli.IntFlag{
 				Name:  "port,p",
@@ -72,7 +72,17 @@ func getCommands() []cli.Command {
 			cli.IntFlag{
 				Name:  "cache,c",
 				Value: 3,
-				Usage: "The cache time unit is minutes, this parameter takes effect in the online environment, default is 3",
+				Usage: "The cache time unit is minutes, this parameter takes effect in the prod environment",
+			},
+			cli.StringFlag{
+				Name:  "analyzer-baidu,ab",
+				Value: "",
+				Usage: "Set up Baidu Analyzer, default is empty",
+			},
+			cli.StringFlag{
+				Name:  "analyzer-google,ag",
+				Value: "",
+				Usage: "Set up Google Analyzer, default is empty",
 			},
 		},
 	}

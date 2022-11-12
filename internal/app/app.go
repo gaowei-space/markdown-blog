@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/fatih/structs"
+	"github.com/gaowei-space/markdown-blog/internal/types"
 	"github.com/gaowei-space/markdown-blog/internal/utils"
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/middleware/accesslog"
@@ -28,6 +29,7 @@ var (
 	AssetsDir   = "web/assets"
 	TocPrefix   = "[toc]"
 	Cache       time.Duration
+	Analyzer    types.Analyzer
 )
 
 // web服务器默认端口
@@ -48,6 +50,9 @@ func initParams(ctx *cli.Context) {
 	if Env == "prod" {
 		Cache = time.Minute * 3
 	}
+
+	// 设置分析器
+	Analyzer.SetAnalyzer(ctx.String("analyzer-baidu"), ctx.String("analyzer-google"))
 }
 
 func setLog(app *iris.Application) {
@@ -98,6 +103,7 @@ func RunWeb(ctx *cli.Context) {
 			Index = firstLink
 		}
 
+		ctx.ViewData("Analyzer", Analyzer)
 		ctx.ViewData("Title", Title)
 		ctx.ViewData("Nav", navs)
 		ctx.ViewData("ActiveNav", getActiveNav(ctx))
