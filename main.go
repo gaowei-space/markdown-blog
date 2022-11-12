@@ -47,27 +47,32 @@ func getCommands() []cli.Command {
 			cli.StringFlag{
 				Name:  "dir,d",
 				Value: MdDir,
-				Usage: "markdown files dir",
+				Usage: "Markdown files dir",
 			},
 			cli.StringFlag{
 				Name:  "title,t",
 				Value: Title,
-				Usage: "blog title, default is Blog",
+				Usage: "Blog title, default is Blog",
 			},
 			cli.IntFlag{
 				Name:  "port,p",
 				Value: DefaultPort,
-				Usage: "bind port",
+				Usage: "Bind port",
 			},
 			cli.StringFlag{
 				Name:  "env,e",
 				Value: "prod",
-				Usage: "runtime environment, dev|test|prod",
+				Usage: "Runtime environment, dev|test|prod",
 			},
 			cli.StringFlag{
 				Name:  "index,i",
 				Value: "",
-				Usage: "home page, default is empty",
+				Usage: "Home page, default is empty",
+			},
+			cli.IntFlag{
+				Name:  "cache,c",
+				Value: 3,
+				Usage: "The cache time unit is minutes, this parameter takes effect in the online environment, default is 3",
 			},
 		},
 	}

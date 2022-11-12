@@ -27,6 +27,7 @@ var (
 	LogsDir     = "cache/logs/"
 	AssetsDir   = "web/assets"
 	TocPrefix   = "[toc]"
+	Cache       time.Duration
 )
 
 // web服务器默认端口
@@ -42,6 +43,11 @@ func initParams(ctx *cli.Context) {
 	Env = ctx.String("env")
 	Title = ctx.String("title")
 	Index = ctx.String("index")
+
+	Cache = time.Minute * 0
+	if Env == "prod" {
+		Cache = time.Minute * 3
+	}
 }
 
 func setLog(app *iris.Application) {
@@ -102,8 +108,7 @@ func RunWeb(ctx *cli.Context) {
 
 	app.HandleDir("/static", AssetsDir)
 
-	// 增加环境变量，获取缓存时间
-	app.Get("/{f:path}", iris.Cache(time.Minute*3), show)
+	app.Get("/{f:path}", iris.Cache(Cache), show)
 
 	app.Run(iris.Addr(":" + strconv.Itoa(parsePort(ctx))))
 }
