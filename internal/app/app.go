@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/fatih/structs"
+	"github.com/gaowei-space/markdown-blog/internal/api"
 	"github.com/gaowei-space/markdown-blog/internal/types"
 	"github.com/gaowei-space/markdown-blog/internal/utils"
 	"github.com/kataras/iris/v12"
@@ -87,8 +88,8 @@ func RunWeb(ctx *cli.Context) {
 
 	tmpl := iris.HTML("./", ".html").Reload(true)
 	app.RegisterView(tmpl)
-	app.OnErrorCode(iris.StatusNotFound, notFound)
-	app.OnErrorCode(iris.StatusInternalServerError, internalServerError)
+	app.OnErrorCode(iris.StatusNotFound, api.NotFound)
+	app.OnErrorCode(iris.StatusInternalServerError, api.InternalServerError)
 
 	setIndexAuto := false
 	if Index == "" {
@@ -230,12 +231,4 @@ func mdToHtml(content []byte, filename string) error {
 	}
 
 	return nil
-}
-
-func notFound(ctx iris.Context) {
-	ctx.View("web/views/errors/404.html")
-}
-
-func internalServerError(ctx iris.Context) {
-	ctx.View("web/views/errors/500.html")
 }

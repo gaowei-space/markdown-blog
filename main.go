@@ -12,23 +12,17 @@ import (
 var (
 	MdDir                = "md/"
 	Title                = "Blog"
-	AppVersion           = "0.0.3"
+	AppVersion           = "0.1.1"
 	BuildDate, GitCommit string
 )
 
 // web服务器默认端口
 const DefaultPort = 5006
 
-type navItem struct {
-	Name  string
-	Path  string
-	IsDir bool
-}
-
 func main() {
 	cliApp := cli.NewApp()
 	cliApp.Name = "markdown-blog"
-	cliApp.Usage = "Markdown Blog Service"
+	cliApp.Usage = "Markdown Blog App"
 	cliApp.Version, _ = utils.FormatAppVersion(AppVersion, GitCommit, BuildDate)
 	cliApp.Commands = getCommands()
 	cliApp.Flags = append(cliApp.Flags, []cli.Flag{}...)
