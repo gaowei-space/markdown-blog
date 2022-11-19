@@ -57,19 +57,17 @@
 		</div>
 		<div class="book-body">
 			<div class="body-inner">
-				{{ render "web/views/layouts/header.html" }}
+				{{ render "layouts/header.html" }}
 				<div class="page-wrapper" tabindex="-1" role="main">
 					<div class="page-inner">
-						<article class="markdown-body">
-							<!-- Render the current template here -->
-							{{ yield }}
-						</article>
+						<!-- Render the current template here -->
+						{{ yield }}
 						<a href="#book-header" class="navigation-go-top"><i class="fa fa-arrow-up"></i></a>
 					</div>
 				</div>
 			</div>
 		</div>
-		<footer>{{ render "web/views/layouts/footer.html" }}</footer>
+		<footer>{{ render "layouts/footer.html" }}</footer>
 	</div>
 </body>
 <script src="/static/js/highlight.js"></script>

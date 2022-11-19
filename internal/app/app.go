@@ -1,6 +1,7 @@
 package app
 
 import (
+	"html/template"
 	"log"
 	"os"
 	"path/filepath"
@@ -10,6 +11,8 @@ import (
 
 	"github.com/fatih/structs"
 	"github.com/gaowei-space/markdown-blog/internal/api"
+	"github.com/gaowei-space/markdown-blog/internal/bindata/assets"
+	"github.com/gaowei-space/markdown-blog/internal/bindata/views"
 	"github.com/gaowei-space/markdown-blog/internal/types"
 	"github.com/gaowei-space/markdown-blog/internal/utils"
 	"github.com/kataras/iris/v12"
@@ -20,17 +23,15 @@ import (
 )
 
 var (
-	MdDir       string
-	Env         string
-	Title       string
-	Index       string
-	LayoutFile  = "web/views/layouts/layout.html"
-	ArticlesDir = "cache/articles/"
-	LogsDir     = "cache/logs/"
-	AssetsDir   = "web/assets"
-	TocPrefix   = "[toc]"
-	Cache       time.Duration
-	Analyzer    types.Analyzer
+	MdDir      string
+	Env        string
+	Title      string
+	Index      string
+	LayoutFile = "layouts/layout.html"
+	LogsDir    = "cache/logs/"
+	TocPrefix  = "[toc]"
+	Cache      time.Duration
+	Analyzer   types.Analyzer
 )
 
 // web服务器默认端口
@@ -86,7 +87,7 @@ func RunWeb(ctx *cli.Context) {
 
 	setLog(app)
 
-	tmpl := iris.HTML("./", ".html").Reload(true)
+	tmpl := iris.HTML(views.AssetFile(), ".html").Reload(true)
 	app.RegisterView(tmpl)
 	app.OnErrorCode(iris.StatusNotFound, api.NotFound)
 	app.OnErrorCode(iris.StatusInternalServerError, api.InternalServerError)
@@ -113,9 +114,9 @@ func RunWeb(ctx *cli.Context) {
 		ctx.Next()
 	})
 
-	app.HandleDir("/static", AssetsDir)
+	app.HandleDir("/static", assets.AssetFile())
 
-	app.Get("/{f:path}", iris.Cache(Cache), show)
+	app.Get("/{f:path}", iris.Cache(Cache), articleHandler)
 
 	app.Run(iris.Addr(":" + strconv.Itoa(parsePort(ctx))))
 }
@@ -180,10 +181,9 @@ func getActiveNav(ctx iris.Context) string {
 	return f
 }
 
-func show(ctx iris.Context) {
+func articleHandler(ctx iris.Context) {
 	f := getActiveNav(ctx)
 	mdfile := MdDir + "/" + f + ".md"
-	articlefile := ArticlesDir + f + ".html"
 
 	_, err := os.Stat(mdfile)
 	if err != nil {
@@ -199,18 +199,12 @@ func show(ctx iris.Context) {
 		return
 	}
 
-	if err := mdToHtml(bytes, articlefile); err != nil {
-		ctx.StatusCode(500)
-		ctx.Application().Logger().Errorf("WriteFile Error %s, Path is %s", err, ctx.Path())
-		return
-	}
+	ctx.ViewData("Article", mdToHtml(bytes))
 
-	ctx.View(articlefile)
+	ctx.View("index.html")
 }
 
-func mdToHtml(content []byte, filename string) error {
-	os.MkdirAll(filepath.Dir(filename), 0777)
-
+func mdToHtml(content []byte) template.HTML {
 	strs := string(content)
 
 	var htmlFlags blackfriday.HTMLFlags
@@ -226,9 +220,6 @@ func mdToHtml(content []byte, filename string) error {
 
 	unsafe := blackfriday.Run([]byte(strs), blackfriday.WithRenderer(renderer), blackfriday.WithExtensions(blackfriday.CommonExtensions))
 	html := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
-	if err := os.WriteFile(filename, html, 0777); err != nil {
-		return err
-	}
 
-	return nil
+	return template.HTML(string(html))
 }
