@@ -1,7 +1,12 @@
 GO111MODULE=on
 
 .PHONY: build
-build: markdown-blog
+build: bindata markdown-blog
+
+.PHONY: bindata
+bindata:
+	go install github.com/go-bindata/go-bindata/v3/go-bindata@latest
+	go generate ./...
 
 .PHONY: markdown-blog
 markdown-blog:

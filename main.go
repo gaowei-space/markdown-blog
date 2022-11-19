@@ -9,6 +9,9 @@ import (
 	"github.com/urfave/cli"
 )
 
+//go:generate go-bindata -fs -o internal/bindata/views/views.go -pkg=views -prefix=web/views ./web/views/...
+//go:generate go-bindata -fs -o internal/bindata/assets/assets.go -pkg=assets -prefix=web/assets ./web/assets/...
+
 var (
 	MdDir                = "md/"
 	Title                = "Blog"
