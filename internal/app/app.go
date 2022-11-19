@@ -37,6 +37,46 @@ var (
 // web服务器默认端口
 const DefaultPort = 5006
 
+func RunWeb(ctx *cli.Context) {
+	initParams(ctx)
+	app := iris.New()
+
+	setLog(app)
+
+	tmpl := iris.HTML(views.AssetFile(), ".html").Reload(true)
+	app.RegisterView(tmpl)
+	app.OnErrorCode(iris.StatusNotFound, api.NotFound)
+	app.OnErrorCode(iris.StatusInternalServerError, api.InternalServerError)
+
+	setIndexAuto := false
+	if Index == "" {
+		setIndexAuto = true
+	}
+
+	app.Use(func(ctx iris.Context) {
+		navs, firstNav := getNavs(getActiveNav(ctx))
+
+		firstLink := strings.TrimPrefix(firstNav.Link, "/")
+		if setIndexAuto && Index != firstLink {
+			Index = firstLink
+		}
+
+		ctx.ViewData("Analyzer", Analyzer)
+		ctx.ViewData("Title", Title)
+		ctx.ViewData("Nav", navs)
+		ctx.ViewData("ActiveNav", getActiveNav(ctx))
+		ctx.ViewLayout(LayoutFile)
+
+		ctx.Next()
+	})
+
+	app.HandleDir("/static", assets.AssetFile())
+
+	app.Get("/{f:path}", iris.Cache(Cache), articleHandler)
+
+	app.Run(iris.Addr(":" + strconv.Itoa(parsePort(ctx))))
+}
+
 func initParams(ctx *cli.Context) {
 	MdDir = ctx.String("dir")
 	if strings.TrimSpace(MdDir) == "" {
@@ -79,46 +119,6 @@ func setLog(app *iris.Application) {
 	ac.AddOutput(app.Logger().Printer)
 	app.UseRouter(ac.Handler)
 	app.Logger().Debugf("Using <%s> to log requests", f.Name())
-}
-
-func RunWeb(ctx *cli.Context) {
-	initParams(ctx)
-	app := iris.New()
-
-	setLog(app)
-
-	tmpl := iris.HTML(views.AssetFile(), ".html").Reload(true)
-	app.RegisterView(tmpl)
-	app.OnErrorCode(iris.StatusNotFound, api.NotFound)
-	app.OnErrorCode(iris.StatusInternalServerError, api.InternalServerError)
-
-	setIndexAuto := false
-	if Index == "" {
-		setIndexAuto = true
-	}
-
-	app.Use(func(ctx iris.Context) {
-		navs, firstNav := getNavs(getActiveNav(ctx))
-
-		firstLink := strings.TrimPrefix(firstNav.Link, "/")
-		if setIndexAuto && Index != firstLink {
-			Index = firstLink
-		}
-
-		ctx.ViewData("Analyzer", Analyzer)
-		ctx.ViewData("Title", Title)
-		ctx.ViewData("Nav", navs)
-		ctx.ViewData("ActiveNav", getActiveNav(ctx))
-		ctx.ViewLayout(LayoutFile)
-
-		ctx.Next()
-	})
-
-	app.HandleDir("/static", assets.AssetFile())
-
-	app.Get("/{f:path}", iris.Cache(Cache), articleHandler)
-
-	app.Run(iris.Addr(":" + strconv.Itoa(parsePort(ctx))))
 }
 
 func parsePort(ctx *cli.Context) int {
