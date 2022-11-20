@@ -69,7 +69,7 @@ echo "### Hello World" > ./md/主页.md
 ### Docker
 1. 下载
 ```
-docker push willgao/markdown-blog:latest
+docker pull willgao/markdown-blog:latest
 ```
 
 2. 启动
