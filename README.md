@@ -39,6 +39,7 @@ Dark    | Light
   - 其他已知问题修复
 
 ## 安装
+### 二进制
 1. 下载 [release](https://github.com/gaowei-space/markdown-blog/releases/)
 
 2. 解压
@@ -59,6 +60,35 @@ echo "### Hello World" > ./md/主页.md
 ```
 
 5. 访问 http://127.0.0.1:5006，查看效果
+
+### Docker
+1. 下载
+```
+docker push willgao/markdown-blog:latest
+```
+
+1. 启动
+   - 线上环境
+    ```
+    docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache markdown-blog:v1
+    ```
+
+   - 开发环境
+    ```
+    docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache markdown-blog:v1 -e dev
+    ```
+
+2. 访问 http://127.0.0.1:5006，查看效果
+
+3. 其他用法
+```
+# 查看帮助
+docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache markdown-blog:v1 -h
+# 设置 title
+docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache markdown-blog:v1 -t "TechMan'Blog"
+# 设置 百度统计
+docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache markdown-blog:v1 -t "TechMan'Blog" --analyzer-google "De44AJSLDdda"
+```
 
 ## 使用
 

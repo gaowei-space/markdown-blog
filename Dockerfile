@@ -13,8 +13,8 @@ RUN CGO_ENABLED=0 make build
 
 FROM scratch as runner
 COPY --from=builder /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-COPY --from=builder /Users/wei/Space/www/markdown-blog/bin/markdown-blog /opt/app/
+COPY --from=builder /Users/wei/Space/www/markdown-blog/bin/markdown-blog /data/app/
 
 EXPOSE 5006
 
-CMD ["/opt/app/markdown-blog", "web"]
+ENTRYPOINT ["/data/app/markdown-blog", "web"]
