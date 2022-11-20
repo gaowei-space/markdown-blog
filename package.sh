@@ -174,14 +174,11 @@ run() {
     init
     build
     package_binary
-    clean
 }
 
 package_markdownblog() {
     BINARY_NAME='markdown-blog'
     MAIN_FILE="./main.go"
-    INCLUDE_FILE=("./web")
-
 
     run
 }

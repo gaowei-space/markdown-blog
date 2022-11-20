@@ -3,6 +3,10 @@ GO111MODULE=on
 .PHONY: build
 build: bindata markdown-blog
 
+.PHONY: docker-build
+docker-build: package-all
+	docker buildx build --platform linux/arm64,linux/amd64 -t willgao/markdown-blog:latest . --push
+
 .PHONY: bindata
 bindata:
 	go install github.com/go-bindata/go-bindata/v3/go-bindata@latest

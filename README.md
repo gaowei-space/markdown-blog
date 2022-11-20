@@ -70,12 +70,12 @@ docker push willgao/markdown-blog:latest
 1. 启动
    - 线上环境
     ```
-    docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache markdown-blog:v1
+    docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache willgao/markdown-blog:latest
     ```
 
    - 开发环境
     ```
-    docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache markdown-blog:v1 -e dev
+    docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache willgao/markdown-blog:latest -e dev
     ```
 
 2. 访问 http://127.0.0.1:5006，查看效果
@@ -83,11 +83,11 @@ docker push willgao/markdown-blog:latest
 3. 其他用法
 ```
 # 查看帮助
-docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache markdown-blog:v1 -h
+docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache willgao/markdown-blog:latest -h
 # 设置 title
-docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache markdown-blog:v1 -t "TechMan'Blog"
+docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache willgao/markdown-blog:latest -t "TechMan'Blog"
 # 设置 百度统计
-docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache markdown-blog:v1 -t "TechMan'Blog" --analyzer-google "De44AJSLDdda"
+docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache willgao/markdown-blog:latest -t "TechMan'Blog" --analyzer-google "De44AJSLDdda"
 ```
 
 ## 使用
@@ -241,7 +241,7 @@ server {
     make package
     ```
 
-1. 生成 Windows、Linux、Mac 的压缩包
+6. 生成 Windows、Linux、Mac 的压缩包
 
     >在 markdown-blog-package 生成压缩包 markdown-blog-v0.0.5-darwin-amd64.tar markdown-blog-v0.0.5-linux-amd64.tar.gz markdown-blog-v0.0.5-windows-amd64.zip*
     ```
