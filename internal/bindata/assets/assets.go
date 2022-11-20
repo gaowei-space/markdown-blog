@@ -194,7 +194,7 @@ func cssGitbookThemeChapterFoldCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "css/gitbook-theme/chapter-fold.css", size: 562, mode: os.FileMode(420), modTime: time.Unix(1651999235, 0)}
+	info := bindataFileInfo{name: "css/gitbook-theme/chapter-fold.css", size: 562, mode: os.FileMode(420), modTime: time.Unix(1658401300, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -214,7 +214,7 @@ func cssGitbookThemeFontsFontawesomeFontawesomeWebfontWoff2() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "css/gitbook-theme/fonts/fontawesome/fontawesome-webfont.woff2", size: 71896, mode: os.FileMode(420), modTime: time.Unix(1651999235, 0)}
+	info := bindataFileInfo{name: "css/gitbook-theme/fonts/fontawesome/fontawesome-webfont.woff2", size: 71896, mode: os.FileMode(420), modTime: time.Unix(1658401300, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -234,7 +234,7 @@ func cssGitbookThemeSplitterCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "css/gitbook-theme/splitter.css", size: 490, mode: os.FileMode(420), modTime: time.Unix(1651999235, 0)}
+	info := bindataFileInfo{name: "css/gitbook-theme/splitter.css", size: 490, mode: os.FileMode(420), modTime: time.Unix(1658401300, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -254,7 +254,7 @@ func cssGitbookThemeStyleCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "css/gitbook-theme/style.css", size: 65248, mode: os.FileMode(420), modTime: time.Unix(1667728956, 0)}
+	info := bindataFileInfo{name: "css/gitbook-theme/style.css", size: 65248, mode: os.FileMode(420), modTime: time.Unix(1658401750, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -274,7 +274,7 @@ func cssGitbookThemeWebsiteCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "css/gitbook-theme/website.css", size: 8919, mode: os.FileMode(420), modTime: time.Unix(1658647846, 0)}
+	info := bindataFileInfo{name: "css/gitbook-theme/website.css", size: 8919, mode: os.FileMode(420), modTime: time.Unix(1658726760, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -294,7 +294,7 @@ func cssGithubMarkdownCssDarkCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "css/github-markdown-css/dark.css", size: 17876, mode: os.FileMode(420), modTime: time.Unix(1667722409, 0)}
+	info := bindataFileInfo{name: "css/github-markdown-css/dark.css", size: 17876, mode: os.FileMode(420), modTime: time.Unix(1668937343, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -314,7 +314,7 @@ func cssGithubMarkdownCssWhiteCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "css/github-markdown-css/white.css", size: 18090, mode: os.FileMode(420), modTime: time.Unix(1667724226, 0)}
+	info := bindataFileInfo{name: "css/github-markdown-css/white.css", size: 18090, mode: os.FileMode(420), modTime: time.Unix(1668937343, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -334,7 +334,7 @@ func cssHighlightThemeA11yDarkCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "css/highlight-theme/a11y-dark.css", size: 1432, mode: os.FileMode(420), modTime: time.Unix(1667723458, 0)}
+	info := bindataFileInfo{name: "css/highlight-theme/a11y-dark.css", size: 1432, mode: os.FileMode(420), modTime: time.Unix(1658401300, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -354,7 +354,7 @@ func cssMainCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "css/main.css", size: 766, mode: os.FileMode(420), modTime: time.Unix(1668247832, 0)}
+	info := bindataFileInfo{name: "css/main.css", size: 766, mode: os.FileMode(420), modTime: time.Unix(1668937343, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -374,7 +374,7 @@ func jsChapterFoldJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "js/chapter-fold.js", size: 2535, mode: os.FileMode(420), modTime: time.Unix(1651999235, 0)}
+	info := bindataFileInfo{name: "js/chapter-fold.js", size: 2535, mode: os.FileMode(420), modTime: time.Unix(1658401300, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -394,7 +394,7 @@ func jsHighlightJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "js/highlight.js", size: 181833, mode: os.FileMode(420), modTime: time.Unix(1651999235, 0)}
+	info := bindataFileInfo{name: "js/highlight.js", size: 181833, mode: os.FileMode(420), modTime: time.Unix(1658401300, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -414,7 +414,7 @@ func jsJqueryJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "js/jQuery.js", size: 404290, mode: os.FileMode(420), modTime: time.Unix(1651999235, 0)}
+	info := bindataFileInfo{name: "js/jQuery.js", size: 404290, mode: os.FileMode(420), modTime: time.Unix(1658401300, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -434,7 +434,7 @@ func jsMainJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "js/main.js", size: 1406, mode: os.FileMode(420), modTime: time.Unix(1667731353, 0)}
+	info := bindataFileInfo{name: "js/main.js", size: 1406, mode: os.FileMode(420), modTime: time.Unix(1668937343, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -454,7 +454,7 @@ func jsSplitterJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "js/splitter.js", size: 4764, mode: os.FileMode(420), modTime: time.Unix(1667718070, 0)}
+	info := bindataFileInfo{name: "js/splitter.js", size: 4764, mode: os.FileMode(420), modTime: time.Unix(1658726760, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }

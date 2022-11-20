@@ -186,7 +186,7 @@ func errors404Html() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "errors/404.html", size: 307, mode: os.FileMode(420), modTime: time.Unix(1651999235, 0)}
+	info := bindataFileInfo{name: "errors/404.html", size: 307, mode: os.FileMode(420), modTime: time.Unix(1658401300, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -206,7 +206,7 @@ func errors500Html() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "errors/500.html", size: 370, mode: os.FileMode(420), modTime: time.Unix(1651999235, 0)}
+	info := bindataFileInfo{name: "errors/500.html", size: 370, mode: os.FileMode(420), modTime: time.Unix(1658401300, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -226,7 +226,7 @@ func indexHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "index.html", size: 59, mode: os.FileMode(420), modTime: time.Unix(1668859849, 0)}
+	info := bindataFileInfo{name: "index.html", size: 59, mode: os.FileMode(420), modTime: time.Unix(1668937343, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -246,7 +246,7 @@ func layoutsFooterHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "layouts/footer.html", size: 0, mode: os.FileMode(420), modTime: time.Unix(1667724476, 0)}
+	info := bindataFileInfo{name: "layouts/footer.html", size: 0, mode: os.FileMode(420), modTime: time.Unix(1658401300, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -266,7 +266,7 @@ func layoutsHeaderHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "layouts/header.html", size: 300, mode: os.FileMode(420), modTime: time.Unix(1667728423, 0)}
+	info := bindataFileInfo{name: "layouts/header.html", size: 300, mode: os.FileMode(420), modTime: time.Unix(1668937343, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -286,7 +286,7 @@ func layoutsLayoutHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "layouts/layout.html", size: 2839, mode: os.FileMode(493), modTime: time.Unix(1668860974, 0)}
+	info := bindataFileInfo{name: "layouts/layout.html", size: 2839, mode: os.FileMode(493), modTime: time.Unix(1668937343, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }

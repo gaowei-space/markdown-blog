@@ -27,6 +27,11 @@ Dark    | Light
 > Windows、Linux、Mac OS
 
 ## 更新
+* `[v1.0.0]` 2022-11-20
+  - 支持 **Docker** 部署
+  - 打包静态文件，优化为单一程序，不再外挂 web 目录
+  - 其他已知问题修复
+
 * `[v0.1.1]` 2022-11-12
   - 新增第三方分析统计配置，包括：百度、谷歌
   - 支持配置页面缓存时间
@@ -67,27 +72,50 @@ echo "### Hello World" > ./md/主页.md
 docker push willgao/markdown-blog:latest
 ```
 
-1. 启动
+2. 启动
    - 线上环境
     ```
-    docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache willgao/markdown-blog:latest
+    docker run -dit --rm --name=markdown-blog \
+    -p 5006:5006 \
+    -v $(pwd)/md:/md -v $(pwd)/cache:/cache \
+    willgao/markdown-blog:latest
     ```
 
    - 开发环境
     ```
-    docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache willgao/markdown-blog:latest -e dev
+    docker run -dit --rm --name=markdown-blog \
+    -p 5006:5006 \
+    -v $(pwd)/md:/md -v $(pwd)/cache:/cache \
+    willgao/markdown-blog:latest \
+    -e dev
     ```
 
-2. 访问 http://127.0.0.1:5006，查看效果
+3. 访问 http://127.0.0.1:5006，查看效果
 
-3. 其他用法
+4. 其他用法
 ```
 # 查看帮助
-docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache willgao/markdown-blog:latest -h
+docker run -dit --rm --name=markdown-blog \
+    -p 5006:5006 \
+    -v $(pwd)/md:/md -v $(pwd)/cache:/cache \
+    willgao/markdown-blog:latest -h
+
+
 # 设置 title
-docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache willgao/markdown-blog:latest -t "TechMan'Blog"
-# 设置 百度统计
-docker run -dit --rm --name=markdown-blog -p 5006:5006 -v $(pwd)/md:/md -v $(pwd)/cache:/cache willgao/markdown-blog:latest -t "TechMan'Blog" --analyzer-google "De44AJSLDdda"
+docker run -dit --rm --name=markdown-blog \
+    -p 5006:5006 \
+    -v $(pwd)/md:/md -v $(pwd)/cache:/cache \
+    willgao/markdown-blog:latest \
+    -t "TechMan'Blog"
+
+
+# 设置 谷歌统计
+docker run -dit --rm --name=markdown-blog \
+    -p 5006:5006 \
+    -v $(pwd)/md:/md -v $(pwd)/cache:/cache \
+    willgao/markdown-blog:latest \
+    -t "TechMan'Blog" \
+    --analyzer-google "De44AJSLDdda"
 ```
 
 ## 使用
@@ -213,7 +241,7 @@ server {
 ## 升级
 1. 下载最新版 [release](https://github.com/gaowei-space/markdown-blog/releases/)
 
-2. 停止程序，解压替换 `markdown-blog` 文件 和 `web` 文件夹
+2. 停止程序，解压替换 `markdown-blog`
 
 3. 重新启动程序
 
