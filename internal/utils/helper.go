@@ -2,6 +2,9 @@ package utils
 
 import (
 	"bytes"
+	"crypto/md5"
+	"crypto/sha1"
+	"encoding/hex"
 	"html/template"
 	"runtime"
 )
@@ -33,4 +36,14 @@ Git Commit: {{.GitCommit}}
 	}
 
 	return buf.String(), err
+}
+
+func MD5(s string) string {
+	sum := md5.Sum([]byte(s))
+	return hex.EncodeToString(sum[:])
+}
+
+func Sha1(s string) string {
+	sum := sha1.Sum([]byte(s))
+	return hex.EncodeToString(sum[:])
 }

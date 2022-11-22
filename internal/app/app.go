@@ -32,6 +32,7 @@ var (
 	TocPrefix  = "[toc]"
 	Cache      time.Duration
 	Analyzer   types.Analyzer
+	Gitalk     types.Gitalk
 )
 
 // web服务器默认端口
@@ -54,24 +55,27 @@ func RunWeb(ctx *cli.Context) {
 	}
 
 	app.Use(func(ctx iris.Context) {
-		navs, firstNav := getNavs(getActiveNav(ctx))
+		activeNav := getActiveNav(ctx)
+
+		navs, firstNav := getNavs(activeNav)
 
 		firstLink := strings.TrimPrefix(firstNav.Link, "/")
 		if setIndexAuto && Index != firstLink {
 			Index = firstLink
 		}
 
+		ctx.ViewData("Gitalk", Gitalk)
 		ctx.ViewData("Analyzer", Analyzer)
 		ctx.ViewData("Title", Title)
 		ctx.ViewData("Nav", navs)
-		ctx.ViewData("ActiveNav", getActiveNav(ctx))
+		ctx.ViewData("ActiveNav", activeNav)
 		ctx.ViewLayout(LayoutFile)
 
 		ctx.Next()
 	})
 
+	app.Favicon("./favicon.ico")
 	app.HandleDir("/static", assets.AssetFile())
-
 	app.Get("/{f:path}", iris.Cache(Cache), articleHandler)
 
 	app.Run(iris.Addr(":" + strconv.Itoa(parsePort(ctx))))

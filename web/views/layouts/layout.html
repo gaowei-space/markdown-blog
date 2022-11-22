@@ -7,12 +7,16 @@
 	<title>{{ .Title }}</title>
 
 	<link rel="stylesheet" id="theme-css" href="/static/css/github-markdown-css/dark.css">
-	<link rel="stylesheet" href="/static/css/main.css">
 	<link rel="stylesheet" href="/static/css/gitbook-theme/style.css">
 	<link rel="stylesheet" href="/static/css/gitbook-theme/website.css">
 	<link rel="stylesheet" href="/static/css/gitbook-theme/chapter-fold.css">
 	<link rel="stylesheet" href="/static/css/gitbook-theme/splitter.css">
 	<link rel="stylesheet" href="/static/css/highlight-theme/a11y-dark.css">
+	<link rel="stylesheet" href="/static/css/main.css">
+
+	{{ if .Gitalk.ClientID }}
+	<link rel="stylesheet" href="/static/css/gitalk/gitalk.css">
+	{{end}}
 
 	{{if .Analyzer.Baidu}}
 	<!-- Baidu analytics -->
@@ -41,7 +45,7 @@
 
 </head>
 <body>
-	<div class="book font-size-2 font-family-0 color-theme-2">
+	<div class="book font-size-2 font-family-1 color-theme-2">
 		<div class="book-summary">
 			<center>
 				<p class="logo" role="logo"><a href="">{{ .Title }}</a></p>
@@ -62,6 +66,7 @@
 					<div class="page-inner">
 						<!-- Render the current template here -->
 						{{ yield }}
+						<div id="gitalk"></div>
 						<a href="#book-header" class="navigation-go-top"><i class="fa fa-arrow-up"></i></a>
 					</div>
 				</div>
@@ -75,7 +80,25 @@
 <script src="/static/js/chapter-fold.js"></script>
 <script src="/static/js/splitter.js"></script>
 <script src="/static/js/main.js"></script>
+{{ if .Gitalk.ClientID }}
+<script src="/static/js/gitalk.min.js"></script>
+<script>
+	const gitalk = new Gitalk({
+		clientID: '{{.Gitalk.ClientID}}',
+		clientSecret: '{{.Gitalk.ClientSecret}}',
+		repo: '{{.Gitalk.Repo}}',
+		owner: '{{.Gitalk.Owner}}',
+		admin: ['{{.Gitalk.Owner}}'],
+		id: '{{.Gitalk.Id}}',
+		labels: ['gitalk']
+	})
+
+	gitalk.render('gitalk')
+</script>
+{{end}}
+
 </html>
+
 {{ define "navs.html" }}
 <li class="chapter {{.Active}}">
 	<a href="{{.Link}}">
