@@ -19,7 +19,7 @@ import (
 	"github.com/kataras/iris/v12/middleware/accesslog"
 	"github.com/microcosm-cc/bluemonday"
 	"github.com/russross/blackfriday/v2"
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 var (
@@ -38,7 +38,7 @@ var (
 // web服务器默认端口
 const DefaultPort = 5006
 
-func RunWeb(ctx *cli.Context) {
+func RunWeb(ctx *cli.Context) error {
 	initParams(ctx)
 	app := iris.New()
 
@@ -63,7 +63,12 @@ func RunWeb(ctx *cli.Context) {
 		if setIndexAuto && Index != firstLink {
 			Index = firstLink
 		}
-
+		// 设置Gitalk
+		Gitalk.ClientID = "f59a9d85d7736d30ad54"
+		Gitalk.ClientSecret = "6bb875fd5031f0d613cd606b1d5dd395da110d1a"
+		Gitalk.Repo = "blog"
+		Gitalk.Owner = "gaowei-space"
+		Gitalk.Id = utils.MD5(activeNav)
 		ctx.ViewData("Gitalk", Gitalk)
 		ctx.ViewData("Analyzer", Analyzer)
 		ctx.ViewData("Title", Title)
@@ -79,6 +84,8 @@ func RunWeb(ctx *cli.Context) {
 	app.Get("/{f:path}", iris.Cache(Cache), articleHandler)
 
 	app.Run(iris.Addr(":" + strconv.Itoa(parsePort(ctx))))
+
+	return nil
 }
 
 func initParams(ctx *cli.Context) {
@@ -87,6 +94,9 @@ func initParams(ctx *cli.Context) {
 		log.Panic("Markdown files folder cannot be empty")
 	}
 	MdDir, _ = filepath.Abs(MdDir)
+
+	ClientID := ctx.String("Gitalk.ClientID")
+	log.Println("ClientID" + ClientID)
 
 	Env = ctx.String("env")
 	Title = ctx.String("title")
