@@ -30,6 +30,8 @@ var (
 	LayoutFile = "layouts/layout.html"
 	LogsDir    = "cache/logs/"
 	TocPrefix  = "[toc]"
+	IgnoreFile = []string{`favicon.ico`, `.DS_Store`, `.gitignore`, `README.md`}
+	IgnorePath = []string{`.git`}
 	Cache      time.Duration
 	Analyzer   types.Analyzer
 	Gitalk     types.Gitalk
@@ -108,6 +110,10 @@ func initParams(ctx *cli.Context) {
 
 	// 设置Gitalk
 	Gitalk.SetGitalk(ctx.String("gitalk.client-id"), ctx.String("gitalk.client-secret"), ctx.String("gitalk.repo"), ctx.String("gitalk.owner"), ctx.StringSlice("gitalk.admin"), ctx.StringSlice("gitalk.labels"))
+
+	// 忽略文件
+	IgnoreFile = append(IgnoreFile, ctx.StringSlice("ignore-file")...)
+	IgnorePath = append(IgnorePath, ctx.StringSlice("ignore-path")...)
 }
 
 func setLog(app *iris.Application) {
@@ -150,8 +156,8 @@ func getNavs(activeNav string) ([]map[string]interface{}, utils.Node) {
 	var option utils.Option
 	option.RootPath = []string{MdDir}
 	option.SubFlag = true
-	option.IgnorePath = []string{`.git`}
-	option.IgnoreFile = []string{`.DS_Store`, `.gitignore`, `README.md`}
+	option.IgnorePath = IgnorePath
+	option.IgnoreFile = IgnoreFile
 	tree, _ := utils.Explorer(option)
 
 	navs := make([]map[string]interface{}, 0)
@@ -196,6 +202,11 @@ func getActiveNav(ctx iris.Context) string {
 
 func articleHandler(ctx iris.Context) {
 	f := getActiveNav(ctx)
+
+	if utils.IsInSlice(IgnoreFile, f) {
+		return
+	}
+
 	mdfile := MdDir + "/" + f + ".md"
 
 	_, err := os.Stat(mdfile)

@@ -124,6 +124,19 @@ func webCommand() *cli.Command {
 
 	flags := append(commonFlags, gitalkFlags...)
 
+	ignoreFlags := []cli.Flag{
+		altsrc.NewStringSliceFlag(&cli.StringSliceFlag{
+			Name:  "ignore-file",
+			Usage: "Set up ignore file, eg: demo.md",
+		}),
+		altsrc.NewStringSliceFlag(&cli.StringSliceFlag{
+			Name:  "ignore-path",
+			Usage: "Set up ignore path, eg: demo",
+		}),
+	}
+
+	flags = append(flags, ignoreFlags...)
+
 	web := cli.Command{
 		Name:   "web",
 		Usage:  "Run blog web server",

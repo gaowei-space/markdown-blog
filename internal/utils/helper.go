@@ -47,3 +47,20 @@ func Sha1(s string) string {
 	sum := sha1.Sum([]byte(s))
 	return hex.EncodeToString(sum[:])
 }
+
+// IsInSlice 判断目标字符串是否是在切片中
+func IsInSlice(slice []string, s string) bool {
+	if len(slice) == 0 {
+		return false
+	}
+
+	isIn := false
+	for _, f := range slice {
+		if f == s {
+			isIn = true
+			break
+		}
+	}
+
+	return isIn
+}

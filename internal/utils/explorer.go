@@ -31,8 +31,9 @@ type Option struct {
 var CurDirPath string
 
 // Explorer 遍历多个目录
-//     option : 遍历选项
-//     tree : 遍历结果
+//
+//	option : 遍历选项
+//	tree : 遍历结果
 func Explorer(option Option) (Node, error) {
 	// 根节点
 	var root Node
@@ -60,8 +61,9 @@ func Explorer(option Option) (Node, error) {
 }
 
 // 递归遍历目录
-//     node : 目录节点
-//     option : 遍历选项
+//
+//	node : 目录节点
+//	option : 遍历选项
 func explorerRecursive(node *Node, option *Option) {
 	// 节点的信息
 	p, err := os.Stat(node.Path)
@@ -120,21 +122,4 @@ func explorerRecursive(node *Node, option *Option) {
 			}
 		}
 	}
-}
-
-// IsInSlice 判断目标字符串是否是在切片中
-func IsInSlice(slice []string, s string) bool {
-	if len(slice) == 0 {
-		return false
-	}
-
-	isIn := false
-	for _, f := range slice {
-		if f == s {
-			isIn = true
-			break
-		}
-	}
-
-	return isIn
 }
