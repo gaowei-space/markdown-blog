@@ -1,4 +1,5 @@
-# 🍭 Markdown-Blog
+<img src="https://user-images.githubusercontent.com/10205742/204092260-007e94c8-f4de-4fdc-94cd-7e1c7f945a91.png">
+
 [![GitHub branch checks state](https://img.shields.io/github/checks-status/gaowei-space/meituan-pub-union/main)](https://github.com/gaowei-space/markdown-blog/tree/main)
 [![GitHub issues](https://img.shields.io/github/issues/gaowei-space/markdown-blog?color=blueviolet)](https://github.com/gaowei-space/markdown-blog/issues)
 [![StyleCI](https://github.styleci.io/repos/494669204/shield?branch=main&style=flat)](https://github.styleci.io/repos/494669204?branch=main)
@@ -27,6 +28,12 @@ Dark    | Light
 > Windows、Linux、Mac OS
 
 ## 更新
+* `[v1.1.0]` 2022-11-26
+  - 支持评论
+  - 支持本地加载配置文件
+  - 支持加载 favicon.ico
+  - 其他已知问题修复
+
 * `[v1.0.0]` 2022-11-20
   - 支持 **Docker** 部署
   - 打包静态文件，优化为单一程序，不再外挂 web 目录
@@ -137,7 +144,42 @@ docker run -dit --rm --name=markdown-blog \
 
 
 ### 关于默认首页
-> 如果启动是未指定`index`，程序默认以导航中的第一个文件作为首页
+> 如果启动时未指定 `index`，程序默认以导航中的第一个文件作为首页
+
+### 关于评论插件
+> 评论插件使用的是 [gitalk](https://github.com/gitalk/gitalk)
+#### 配置
+1. 创建配置文件 `config.yml`，内容参考项目 `config/config.yml.tmp`，内容如下：
+```
+gitalk:
+  client-id: "Your github oauth app client-id, required fields. eg: ad549a9d085d7f5736d3"
+  client-secret: "Your github oauth app client-secret, required fields. eg: 510d1a6bb875fd5031f0d613cd606b1d"
+  repo: "Github repo for gitalk, required fields. eg: blog-issue"
+  owner: "Your github account, required fields."
+  admin:
+    - "Your github account"
+  labels:
+    - "Custom issue labels, eg: gitalk"
+
+ignore-file:
+  - "demo.md"
+
+ignore-path:
+  - "demo"
+```
+
+2. 启动时加载配置文件
+   1. 二进制文件
+    ```
+    ./markdown-blog web -e dev --config ./config/config.yml
+    ```
+   2. docker
+    ```
+    docker run -dit --rm --name=markdown-blog \
+    -p 5006:5006 \
+    -v $(pwd)/md:/md -v $(pwd)/cache:/cache -v $(pwd)/config:/config \
+    willgao/markdown-blog:latest -e dev --config ./config/config.yml
+    ```
 
 ### 关于分析统计器
 #### 百度
@@ -176,7 +218,7 @@ docker run -dit --rm --name=markdown-blog \
 ```
 
 ### 导航排序
-> 博客导航默认按照`字典`排序，可以通过 `@` 前面的数字来自定义顺序
+> 博客导航默认按照 `字典` 排序，可以通过 `@` 前面的数字来自定义顺序
 
 #### 个人博客目录如下图
 <img width="390" alt="image" src="https://user-images.githubusercontent.com/10205742/176992908-affe01b6-0a50-488b-bb67-216a75f2a02c.png">

@@ -8,7 +8,7 @@ body {
 }
 
 .logo a {
-    color: white;
+    color: rgb(21, 26, 47);
 }
 
 .theme-action i {
@@ -54,4 +54,7 @@ body {
 }
 .color-theme-2 .gt-container .gt-header-textarea:hover {
     color: #272a3a;
+}
+.color-theme-2 .logo a {
+    color: white;
 }
