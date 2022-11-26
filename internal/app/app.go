@@ -19,7 +19,7 @@ import (
 	"github.com/kataras/iris/v12/middleware/accesslog"
 	"github.com/microcosm-cc/bluemonday"
 	"github.com/russross/blackfriday/v2"
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 var (
@@ -32,13 +32,15 @@ var (
 	TocPrefix  = "[toc]"
 	Cache      time.Duration
 	Analyzer   types.Analyzer
+	Gitalk     types.Gitalk
 )
 
 // web服务器默认端口
 const DefaultPort = 5006
 
-func RunWeb(ctx *cli.Context) {
+func RunWeb(ctx *cli.Context) error {
 	initParams(ctx)
+
 	app := iris.New()
 
 	setLog(app)
@@ -54,27 +56,35 @@ func RunWeb(ctx *cli.Context) {
 	}
 
 	app.Use(func(ctx iris.Context) {
-		navs, firstNav := getNavs(getActiveNav(ctx))
+		activeNav := getActiveNav(ctx)
+
+		navs, firstNav := getNavs(activeNav)
 
 		firstLink := strings.TrimPrefix(firstNav.Link, "/")
 		if setIndexAuto && Index != firstLink {
 			Index = firstLink
 		}
 
+		// 设置 Gitalk ID
+		Gitalk.Id = utils.MD5(activeNav)
+
+		ctx.ViewData("Gitalk", Gitalk)
 		ctx.ViewData("Analyzer", Analyzer)
 		ctx.ViewData("Title", Title)
 		ctx.ViewData("Nav", navs)
-		ctx.ViewData("ActiveNav", getActiveNav(ctx))
+		ctx.ViewData("ActiveNav", activeNav)
 		ctx.ViewLayout(LayoutFile)
 
 		ctx.Next()
 	})
 
+	app.Favicon("./favicon.ico")
 	app.HandleDir("/static", assets.AssetFile())
-
 	app.Get("/{f:path}", iris.Cache(Cache), articleHandler)
 
 	app.Run(iris.Addr(":" + strconv.Itoa(parsePort(ctx))))
+
+	return nil
 }
 
 func initParams(ctx *cli.Context) {
@@ -95,6 +105,9 @@ func initParams(ctx *cli.Context) {
 
 	// 设置分析器
 	Analyzer.SetAnalyzer(ctx.String("analyzer-baidu"), ctx.String("analyzer-google"))
+
+	// 设置Gitalk
+	Gitalk.SetGitalk(ctx.String("gitalk.client-id"), ctx.String("gitalk.client-secret"), ctx.String("gitalk.repo"), ctx.String("gitalk.owner"), ctx.StringSlice("gitalk.admin"), ctx.StringSlice("gitalk.labels"))
 }
 
 func setLog(app *iris.Application) {

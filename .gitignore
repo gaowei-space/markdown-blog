@@ -1,5 +1,7 @@
-bin
-md
-cache
-package
-build
+bin/
+md/
+cache/
+package/
+build/
+config/*
+!config/config.yml.tmp
