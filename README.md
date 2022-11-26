@@ -179,9 +179,9 @@ willgao/markdown-blog:latest --config ./config/config.yml
 ### 评论插件
 > 评论插件使用的是 **Gitalk**，在使用前请阅读插件使用说明 [English](https://github.com/gitalk/gitalk/blob/master/readme.md) | [中文](https://github.com/gitalk/gitalk/blob/master/readme-cn.md)
 
-#### 配置
 1. 新增 `gitalk` 配置项，内容参考 `config/config.yml.tmp`
 ```
+gitalk:
     client-id: "你的 github oauth app client-id，必填。 如: ad549a9d085d7f5736d3"
     client-secret: "你的 github oauth app client-secret，必填。 如: 510d1a6bb875fd5031f0d613cd606b1d"
     repo: "你准备用于评论的项目名称，必填。 如: blog-issue"
