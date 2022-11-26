@@ -1,8 +1,8 @@
 gitalk:
-  client-id: "Your github oauth app client-id, eg: ad549a9d085d7f5736d3"
-  client-secret: "Your github oauth app client-secret, eg: 510d1a6bb875fd5031f0d613cd606b1d"
-  repo: "Github repo for gitalk, eg: blog-issue"
-  owner: "Your github account"
+  client-id: "Your github oauth app client-id, required fields. eg: ad549a9d085d7f5736d3"
+  client-secret: "Your github oauth app client-secret, required fields. eg: 510d1a6bb875fd5031f0d613cd606b1d"
+  repo: "Github repo for gitalk, required fields. eg: blog-issue"
+  owner: "Your github account, required fields."
   admin:
     - "Your github account"
   labels:

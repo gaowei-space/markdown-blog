@@ -476,7 +476,7 @@ func jsMainJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "js/main.js", size: 1406, mode: os.FileMode(420), modTime: time.Unix(1667731353, 0)}
+	info := bindataFileInfo{name: "js/main.js", size: 1406, mode: os.FileMode(420), modTime: time.Unix(1669131134, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
