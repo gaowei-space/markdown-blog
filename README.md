@@ -30,9 +30,8 @@ Dark    | Light
 ## 更新
 * `[v1.1.0]` 2022-11-26
   - 支持评论
-  - 支持本地加载配置文件
+  - 参数设置，支持从本地文件读取（config.yml）
   - 支持加载 favicon.ico
-  - 支持忽略文件和文件夹
   - 其他已知问题修复
 
 * `[v1.0.0]` 2022-11-20
@@ -133,13 +132,13 @@ docker run -dit --rm --name=markdown-blog \
     - -h 查看版本
     - web 运行博客服务
 - markdown-blog web
+   - --config FILE                  加载配置文件, 默认为空
    - --dir value, -d value          指定markdown文件夹，默认：./md/
    - --title value, -t value        web服务标题，默认："Blog"
    - --port value, -p value         web服务端口，默认：5006
    - --env value, -e value          运行环境, 可选：dev,test,prod，默认："prod"
    - --index value, -i value        设置默认首页的文件名称, 默认为空
    - --cache value, -c value        设置页面缓存时间，单位分钟，默认3分钟
-   - --config FILE                  加载配置文件, 默认为空
    - --analyzer-baidu value         设置百度分析统计器
    - --analyzer-google value        设置谷歌分析统计器
    - --gitalk.client-id value       设置 Gitalk ClientId, 默认为空
@@ -152,45 +151,50 @@ docker run -dit --rm --name=markdown-blog \
    - --ignore-path value            设置忽略文件夹, eg: demo
    - -h                             查看版本
 
-### 关于默认首页
-> 如果启动时未指定 `index`，程序默认以导航中的第一个文件作为首页
 
-### 关于评论插件
-> 评论插件使用的是 [gitalk](https://github.com/gitalk/gitalk)
-#### 配置
-1. 创建配置文件 `config.yml`，内容参考项目 `config/config.yml.tmp`，内容如下：
-```
-gitalk:
-  client-id: "Your github oauth app client-id, required fields. eg: ad549a9d085d7f5736d3"
-  client-secret: "Your github oauth app client-secret, required fields. eg: 510d1a6bb875fd5031f0d613cd606b1d"
-  repo: "Github repo for gitalk, required fields. eg: blog-issue"
-  owner: "Your github account, required fields."
-  admin:
-    - "Your github account"
-  labels:
-    - "Custom issue labels, eg: gitalk"
+### 运行参数
+> 支持从配置文件读取配置项，不过运行时指定参数优先于配置文件，配置内容参考 `config/config.yml.tmp`
 
-ignore-file:
-  - "demo.md"
+### 配置文件
 
-ignore-path:
-  - "demo"
-```
+1. 新建配置文件 `config/config.yml`
 
 2. 启动时加载配置文件
-   1. 二进制文件
-    ```
-    ./markdown-blog web -e dev --config ./config/config.yml
-    ```
-   2. docker
-    ```
-    docker run -dit --rm --name=markdown-blog \
-    -p 5006:5006 \
-    -v $(pwd)/md:/md -v $(pwd)/cache:/cache -v $(pwd)/config:/config \
-    willgao/markdown-blog:latest -e dev --config ./config/config.yml
-    ```
+- 二进制文件
+```
+./markdown-blog web --config ./config/config.yml
+```
 
-### 关于分析统计器
+- Docker
+```
+docker run -dit --rm --name=markdown-blog \
+-p 5006:5006 \
+-v $(pwd)/md:/md -v $(pwd)/cache:/cache -v $(pwd)/config:/config \
+willgao/markdown-blog:latest --config ./config/config.yml
+```
+
+### 默认首页
+> 如果启动时未指定 `index`，程序默认以导航中的第一个文件作为首页
+
+### 评论插件
+> 评论插件使用的是 **Gitalk**，在使用前请阅读插件使用说明 [English](https://github.com/gitalk/gitalk/blob/master/readme.md) | [中文](https://github.com/gitalk/gitalk/blob/master/readme-cn.md)
+
+#### 配置
+1. 新增 `gitalk` 配置项，内容参考 `config/config.yml.tmp`
+```
+    client-id: "你的 github oauth app client-id，必填。 如: ad549a9d085d7f5736d3"
+    client-secret: "你的 github oauth app client-secret，必填。 如: 510d1a6bb875fd5031f0d613cd606b1d"
+    repo: "你准备用于评论的项目名称，必填。 如: blog-issue"
+    owner: "你的Github账号，必填。"
+    admin:
+        - "你的Github账号"
+    labels:
+        - "自定义issue标签，如: gitalk"
+```
+
+2. 启动时加载配置文件即可
+
+### 分析统计器
 #### 百度
 ##### 1. 访问 https://tongji.baidu.com 创建站点，获取官方代码中的参数 `0952befd5b7da358ad12fae3437515b1`
 ```html
