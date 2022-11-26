@@ -229,6 +229,9 @@ gitalk:
 ./markdown-blog web --analyzer-google G-MYSMYSMYS
 ```
 
+### 标题栏图标
+> 默认读取与程序运行同一级目录的 **favicon.ico** 文件
+
 ### 导航排序
 > 博客导航默认按照 `字典` 排序，可以通过 `@` 前面的数字来自定义顺序
 
