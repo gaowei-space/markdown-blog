@@ -1,9 +1,0 @@
-gitalk:
-  client-id: f59a9d85d7736d30ad54
-  client-secret: 6bb875fd5031f0d613cd606b1d5dd395da110d1a
-  repo: blog
-  owner: gaowei-space
-  admin:
-    - gaowei-space
-  labels:
-    - gitalk
