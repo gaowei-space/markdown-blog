@@ -1,6 +1,6 @@
-bin
-md
-cache
-package
-build
-config.yml
+bin/
+md/
+cache/
+package/
+build/
+config/
