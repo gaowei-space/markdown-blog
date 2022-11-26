@@ -7,3 +7,9 @@ gitalk:
     - "Your github account"
   labels:
     - "Custom issue labels, eg: gitalk"
+
+ignore-file:
+  - "demo.md"
+
+ignore-path:
+  - "demo"
