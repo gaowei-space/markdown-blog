@@ -32,6 +32,7 @@ Dark    | Light
   - 支持评论
   - 支持本地加载配置文件
   - 支持加载 favicon.ico
+  - 支持忽略文件和文件夹
   - 其他已知问题修复
 
 * `[v1.0.0]` 2022-11-20
@@ -132,16 +133,24 @@ docker run -dit --rm --name=markdown-blog \
     - -h 查看版本
     - web 运行博客服务
 - markdown-blog web
-   - --dir value, -d value     指定markdown文件夹，默认：./md/
-   - --title value, -t value   web服务标题，默认："Blog"
-   - --port value, -p value    web服务端口，默认：5006
-   - --env value, -e value     运行环境, 可选：dev,test,prod，默认："prod"
-   - --index value, -i value   设置默认首页的文件名称, 默认为空
-   - --cache value, -c value   设置页面缓存时间，单位分钟，默认3分钟
-   - --analyzer-baidu value    设置百度分析统计器
-   - --analyzer-google value   设置谷歌分析统计器
-   - -h                        查看版本
-
+   - --dir value, -d value          指定markdown文件夹，默认：./md/
+   - --title value, -t value        web服务标题，默认："Blog"
+   - --port value, -p value         web服务端口，默认：5006
+   - --env value, -e value          运行环境, 可选：dev,test,prod，默认："prod"
+   - --index value, -i value        设置默认首页的文件名称, 默认为空
+   - --cache value, -c value        设置页面缓存时间，单位分钟，默认3分钟
+   - --config FILE                  加载配置文件, 默认为空
+   - --analyzer-baidu value         设置百度分析统计器
+   - --analyzer-google value        设置谷歌分析统计器
+   - --gitalk.client-id value       设置 Gitalk ClientId, 默认为空
+   - --gitalk.client-secret value   设置 Gitalk ClientSecret, 默认为空
+   - --gitalk.repo value            设置 Gitalk Repo, 默认为空
+   - --gitalk.owner value           设置 Gitalk Owner, 默认为空
+   - --gitalk.admin                 设置 Gitalk Admin, 默认为数组 [gitalk.owner]
+   - --gitalk.labels                设置 Gitalk Admin, 默认为数组 ["gitalk"]
+   - --ignore-file value            设置忽略文件, eg: demo.md
+   - --ignore-path value            设置忽略文件夹, eg: demo
+   - -h                             查看版本
 
 ### 关于默认首页
 > 如果启动时未指定 `index`，程序默认以导航中的第一个文件作为首页

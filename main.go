@@ -41,58 +41,46 @@ func getCommands() []*cli.Command {
 func webCommand() *cli.Command {
 	commonFlags := []cli.Flag{
 		&cli.StringFlag{
-			Name:    "dir",
-			Aliases: []string{"d"},
-			Value:   MdDir,
-			Usage:   "Markdown files dir",
-		},
-		&cli.StringFlag{
-			Name:    "title",
-			Aliases: []string{"t"},
-			Value:   Title,
-			Usage:   "Blog title",
-		},
-		&cli.IntFlag{
-			Name:    "port",
-			Aliases: []string{"p"},
-			Value:   DefaultPort,
-			Usage:   "Bind port",
-		},
-		&cli.StringFlag{
-			Name:    "env",
-			Aliases: []string{"e"},
-			Value:   "prod",
-			Usage:   "Runtime environment, dev|test|prod",
-		},
-		&cli.StringFlag{
-			Name:    "index",
-			Aliases: []string{"i"},
-			Value:   "",
-			Usage:   "Home page, default is empty",
-		},
-		&cli.IntFlag{
-			Name:    "cache",
-			Aliases: []string{"c"},
-			Value:   3,
-			Usage:   "The cache time unit is minutes, this parameter takes effect in the prod environment",
-		},
-		&cli.StringFlag{
-			Name:    "analyzer-baidu",
-			Aliases: []string{"ab"},
-			Value:   "",
-			Usage:   "Set up Baidu Analyzer, default is empty",
-		},
-		&cli.StringFlag{
-			Name:    "analyzer-google",
-			Aliases: []string{"ag"},
-			Value:   "",
-			Usage:   "Set up Google Analyzer, default is empty",
-		},
-		&cli.StringFlag{
 			Name:  "config",
 			Value: "",
 			Usage: "Load configuration from `FILE`, default is empty",
 		},
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:    "dir",
+			Aliases: []string{"d"},
+			Value:   MdDir,
+			Usage:   "Markdown files dir",
+		}),
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:    "title",
+			Aliases: []string{"t"},
+			Value:   Title,
+			Usage:   "Blog title",
+		}),
+		altsrc.NewIntFlag(&cli.IntFlag{
+			Name:    "port",
+			Aliases: []string{"p"},
+			Value:   DefaultPort,
+			Usage:   "Bind port",
+		}),
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:    "env",
+			Aliases: []string{"e"},
+			Value:   "prod",
+			Usage:   "Runtime environment, dev|test|prod",
+		}),
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:    "index",
+			Aliases: []string{"i"},
+			Value:   "",
+			Usage:   "Home page, default is empty",
+		}),
+		altsrc.NewIntFlag(&cli.IntFlag{
+			Name:    "cache",
+			Aliases: []string{"c"},
+			Value:   3,
+			Usage:   "The cache time unit is minutes, this parameter takes effect in the prod environment",
+		}),
 	}
 
 	gitalkFlags := []cli.Flag{
@@ -123,6 +111,23 @@ func webCommand() *cli.Command {
 	}
 
 	flags := append(commonFlags, gitalkFlags...)
+
+	analyzerFlags := []cli.Flag{
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:    "analyzer-baidu",
+			Aliases: []string{"ab"},
+			Value:   "",
+			Usage:   "Set up Baidu Analyzer, default is empty",
+		}),
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:    "analyzer-google",
+			Aliases: []string{"ag"},
+			Value:   "",
+			Usage:   "Set up Google Analyzer, default is empty",
+		}),
+	}
+
+	flags = append(flags, analyzerFlags...)
 
 	ignoreFlags := []cli.Flag{
 		altsrc.NewStringSliceFlag(&cli.StringSliceFlag{
