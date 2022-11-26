@@ -7,6 +7,10 @@ build: bindata markdown-blog
 docker-push: package-all
 	docker buildx build --platform linux/arm64,linux/amd64 -t willgao/markdown-blog:latest . --push
 
+.PHONY: docker-build
+docker-build: package-all
+	docker build -t willgao/markdown-blog:dev -f ./Dockerfile.Develop .
+
 .PHONY: bindata
 bindata:
 	go install github.com/go-bindata/go-bindata/v3/go-bindata@latest
