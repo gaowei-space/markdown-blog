@@ -3,4 +3,5 @@ md/
 cache/
 package/
 build/
-config/
+config/*
+!config/config.yml.tmp
