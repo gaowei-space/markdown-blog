@@ -179,7 +179,7 @@ willgao/markdown-blog:latest --config ./config/config.yml
 ### 评论插件
 > 评论插件使用的是 **Gitalk**，在使用前请阅读插件使用说明 [English](https://github.com/gitalk/gitalk/blob/master/readme.md) | [中文](https://github.com/gitalk/gitalk/blob/master/readme-cn.md)
 
-##### 新增 `gitalk` 配置项，启动时加载配置文件即可
+#### 新增 `gitalk` 配置项，启动时加载配置文件即可
 
 ```yaml
 gitalk:
