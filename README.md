@@ -7,7 +7,6 @@
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/gaowei-space/markdown-blog?color=blueviolet)](https://github.com/gaowei-space/markdown-blog)
 [![Go Report](https://goreportcard.com/badge/github.com/gaowei-space/markdown-blog)](https://goreportcard.com/report/github.com/gaowei-space/markdown-blog)
 [![Docker Image Size](https://img.shields.io/docker/image-size/willgao/markdown-blog/latest?color=green)](https://hub.docker.com/repository/docker/willgao/markdown-blog)
-[![GitHub License](https://img.shields.io/github/license/gaowei-space/markdown-blog)](https://github.com/gaowei-space/markdown-blog/blob/main/LICENSE)
 
 [Markdown-Blog](https://github.com/gaowei-space/markdown-blog) 是一款小而美的**Markdown静态博客**程序
 
