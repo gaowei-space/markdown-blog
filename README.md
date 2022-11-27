@@ -1,7 +1,7 @@
 <img src="https://user-images.githubusercontent.com/10205742/204092260-007e94c8-f4de-4fdc-94cd-7e1c7f945a91.png">
 
 [![GitHub Checks State](https://img.shields.io/github/checks-status/gaowei-space/meituan-pub-union/main)](https://github.com/gaowei-space/markdown-blog/tree/main)
-[![GitHub Issues](https://img.shields.io/github/issues/gaowei-space/markdown-blog?color=blueviolet)](https://github.com/gaowei-space/markdown-blog/issues)
+[![GitHub Issues](https://img.shields.io/github/issues/gaowei-space/markdown-blog?color=yellow)](https://github.com/gaowei-space/markdown-blog/issues)
 [![StyleCI](https://github.styleci.io/repos/494669204/shield?branch=main&style=flat)](https://github.styleci.io/repos/494669204?branch=main)
 [![GitHub Latest Release](https://img.shields.io/github/v/release/gaowei-space/markdown-blog)](https://github.com/gaowei-space/markdown-blog/releases)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/gaowei-space/markdown-blog?color=blueviolet)](https://github.com/gaowei-space/markdown-blog)
