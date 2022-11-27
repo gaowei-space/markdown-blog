@@ -309,26 +309,28 @@ server {
 
 3. 启动 web服务
 
-    >运行之后访问地址 http://localhost:5006，API请求会转发给 markdown-blog
+    运行之后访问地址 http://localhost:5006，API请求会转发给 `markdown-blog` 程序
     ```
     make run
     ```
 
 4. 编译
+
+    在 **bin** 目录生成当前系统的压缩包，如：markdown-blog-v1.1.0-darwin-amd64.tar
     ```
     make
     ```
 
 5. 打包
 
-    >在 markdown-blog-package 生成当前系统的压缩包 markdown-blog-v0.0.5-darwin-amd64.tar
+    在 **package** 目录生成当前系统的压缩包，如：markdown-blog-v1.1.0-darwin-amd64.tar
     ```
     make package
     ```
 
 6. 生成 Windows、Linux、Mac 的压缩包
 
-    >在 markdown-blog-package 生成压缩包 markdown-blog-v0.0.5-darwin-amd64.tar markdown-blog-v0.0.5-linux-amd64.tar.gz markdown-blog-v0.0.5-windows-amd64.zip*
+    在 **package** 生成压缩包，如：markdown-blog-v1.1.0-darwin-amd64.tar markdown-blog-v1.1.0-linux-amd64.tar.gz markdown-blog-v1.1.0-windows-amd64.zip
     ```
     make package-all
     ```
