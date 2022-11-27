@@ -309,7 +309,7 @@ server {
 
 3. 启动 web服务
 
-    运行之后访问地址 http://localhost:5006，API请求会转发给 `markdown-blog` 程序
+    运行之后访问地址 [http://localhost:5006](http://localhost:5006)，API请求会转发给 `markdown-blog` 程序
     ```
     make run
     ```
