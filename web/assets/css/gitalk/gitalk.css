@@ -1206,6 +1206,7 @@
     overflow: auto;
     -webkit-transition: all ease 0.25s;
     transition: all ease 0.25s;
+    border-radius: 5px;
 }
 
 .gt-container .gt-comment-content:hover {
@@ -1321,7 +1322,6 @@
 
 .gt-container .gt-comment-admin .gt-comment-content {
     background-color: #f6f9fe;
-    border-radius: 5px;
 }
 
 @-webkit-keyframes gt-kf-rotate {

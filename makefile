@@ -25,7 +25,7 @@ build-race: enable-race build
 
 .PHONY: run
 run: build
-	./bin/markdown-blog web -e dev
+	./bin/markdown-blog web --config ./config/config.yml
 
 .PHONY: run-race
 run-race: enable-race run
