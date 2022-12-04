@@ -142,10 +142,31 @@ func webCommand() *cli.Command {
 
 	flags = append(flags, ignoreFlags...)
 
+	listenerFlags := []cli.Flag{
+		altsrc.NewBoolFlag(&cli.BoolFlag{
+			Name:  "listener.open",
+			Usage: "Set up lintener status, default is false",
+		}),
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:  "listener.cert-file",
+			Usage: "Set up cert-file",
+		}),
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:  "listener.host",
+			Usage: "Set up host",
+		}),
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:  "listener.key-file",
+			Usage: "Set up cert-file",
+		}),
+	}
+
+	flags = append(flags, listenerFlags...)
+
 	web := cli.Command{
 		Name:   "web",
 		Usage:  "Run blog web server",
-		Action: app.RunWeb,
+		Action: app.Run,
 		Flags:  flags,
 		Before: altsrc.InitInputSourceWithContext(flags, altsrc.NewYamlSourceFromFlagFunc("config")),
 	}

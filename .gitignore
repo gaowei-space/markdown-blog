@@ -1,7 +1,8 @@
-bin/
-md/
-cache/
-package/
-build/
+bin
+md
+cache
+package
+build
+certs
 config/*
 !config/config.yml.tmp

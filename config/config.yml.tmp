@@ -21,3 +21,8 @@ ignore-file:
   - "demo.md"
 ignore-path:
   - "demo"
+
+listener:
+  open: true
+  key-file: "./certs/blog.key"
+  cert-file: "./certs/blog.pem"
