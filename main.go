@@ -148,12 +148,12 @@ func webCommand() *cli.Command {
 			Usage: "Set up lintener status, default is false",
 		}),
 		altsrc.NewStringFlag(&cli.StringFlag{
-			Name:  "listener.cert-file",
-			Usage: "Set up cert-file",
-		}),
-		altsrc.NewStringFlag(&cli.StringFlag{
 			Name:  "listener.host",
 			Usage: "Set up host",
+		}),
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:  "listener.cert-file",
+			Usage: "Set up cert-file",
 		}),
 		altsrc.NewStringFlag(&cli.StringFlag{
 			Name:  "listener.key-file",
