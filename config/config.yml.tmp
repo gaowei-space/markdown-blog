@@ -24,5 +24,6 @@ ignore-path:
 
 listener:
   open: true
+  host: www.blog.com
   key-file: "./certs/blog.key"
   cert-file: "./certs/blog.pem"
