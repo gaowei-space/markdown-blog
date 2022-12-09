@@ -4,4 +4,4 @@ cache/
 package/
 build/
 config/*
-!config/config.yml.tmp
+!config/config.yml.tmp.idea/
