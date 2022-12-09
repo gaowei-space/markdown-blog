@@ -9,13 +9,17 @@ type Gitalk struct {
 	Id           string   `json:"id"`
 	Admin        []string `json:"admin"`
 	Labels       []string `json:"labels"`
+	Api          string   `json:"api"`
+	Cors         string   `json:"cors"`
 }
 
-func (g *Gitalk) SetGitalk(clientID string, clientSecret string, repo string, owner string, admin []string, labels []string) {
+func (g *Gitalk) SetGitalk(clientID string, clientSecret string, repo string, owner string, admin []string, labels []string, api string, cors string) {
 	g.ClientID = clientID
 	g.ClientSecret = clientSecret
 	g.Repo = repo
 	g.Owner = owner
 	g.Admin = admin
 	g.Labels = labels
+	g.Api = api
+	g.Cors = cors
 }

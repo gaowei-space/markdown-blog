@@ -6,7 +6,9 @@ import (
 	"crypto/sha1"
 	"encoding/hex"
 	"html/template"
+	"regexp"
 	"runtime"
+	"strings"
 )
 
 // FormatAppVersion 格式化应用版本信息
@@ -56,7 +58,15 @@ func IsInSlice(slice []string, s string) bool {
 
 	isIn := false
 	for _, f := range slice {
-		if f == s {
+		// 增加正则支持, r'正则表达式'
+		if strings.HasPrefix(f, "r'") && strings.HasSuffix(f, "'") {
+			regexStr := strings.TrimPrefix(f, "r'")
+			regexStr = strings.TrimSuffix(regexStr, "'")
+			if ok, _ := regexp.Match(regexStr, []byte(s)); ok {
+				isIn = true
+				break
+			}
+		} else if f == s {
 			isIn = true
 			break
 		}

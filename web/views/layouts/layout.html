@@ -82,6 +82,22 @@
 <script src="/static/js/main.js"></script>
 {{ if .Gitalk.ClientID }}
 <script src="/static/js/gitalk.min.js"></script>
+<script src="/static/js/ajaxhook.min.js"></script>
+<script>
+	ah.proxy({
+		onRequest: (config,handler) => {
+			let api = '{{.Gitalk.Api}}';
+			let cors = '{{.Gitalk.Cors}}';
+			if(api != undefined && api != "") {
+				config.url = config.url.replace("api.github.com", api);
+			}
+			if(cors != undefined && cors != "") {
+				config.url = config.url.replace("cors-anywhere.azm.workers.dev", cors);
+			}
+			handler.next(config);
+		}
+	});
+</script>
 <script>
 	const gitalk = new Gitalk({
 		clientID: '{{.Gitalk.ClientID}}',
@@ -96,7 +112,6 @@
 	gitalk.render('gitalk')
 </script>
 {{end}}
-
 </html>
 
 {{ define "navs.html" }}

@@ -109,7 +109,7 @@ func initParams(ctx *cli.Context) {
 	Analyzer.SetAnalyzer(ctx.String("analyzer-baidu"), ctx.String("analyzer-google"))
 
 	// 设置Gitalk
-	Gitalk.SetGitalk(ctx.String("gitalk.client-id"), ctx.String("gitalk.client-secret"), ctx.String("gitalk.repo"), ctx.String("gitalk.owner"), ctx.StringSlice("gitalk.admin"), ctx.StringSlice("gitalk.labels"))
+	Gitalk.SetGitalk(ctx.String("gitalk.client-id"), ctx.String("gitalk.client-secret"), ctx.String("gitalk.repo"), ctx.String("gitalk.owner"), ctx.StringSlice("gitalk.admin"), ctx.StringSlice("gitalk.labels"), ctx.String("gitalk.api"), ctx.String("gitalk.cors"))
 
 	// 忽略文件
 	IgnoreFile = append(IgnoreFile, ctx.StringSlice("ignore-file")...)

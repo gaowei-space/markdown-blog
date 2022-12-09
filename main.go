@@ -108,6 +108,14 @@ func webCommand() *cli.Command {
 			Name:  "gitalk.labels",
 			Usage: "Set up Gitalk Admin, default is `[\"gitalk\"]`",
 		}),
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:  "gitalk.api",
+			Usage: "Set up Gitalk Api proxy, optional",
+		}),
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:  "gitalk.cors",
+			Usage: "Set up Gitalk Cors proxy, optional",
+		}),
 	}
 
 	flags := append(commonFlags, gitalkFlags...)
