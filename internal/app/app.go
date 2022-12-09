@@ -206,26 +206,42 @@ func articleHandler(ctx iris.Context) {
 	if utils.IsInSlice(IgnoreFile, f) {
 		return
 	}
+	// 防止目录穿越
+	if strings.Contains(f, "..") || strings.Contains(f, "./") {
+		return
+	}
+	// 文件类型
+	ftype := "md"
 
-	mdfile := MdDir + "/" + f + ".md"
+	fpath := MdDir + "/" + f
+	// 判断文件后缀是否是.png
+	if strings.HasSuffix(fpath, ".png") {
+		ftype = "img"
+	} else {
+		fpath = fpath + ".md"
+	}
 
-	_, err := os.Stat(mdfile)
+	_, err := os.Stat(fpath)
 	if err != nil {
 		ctx.StatusCode(404)
-		ctx.Application().Logger().Errorf("Not Found '%s', Path is %s", mdfile, ctx.Path())
+		ctx.Application().Logger().Errorf("Not Found '%s', Path is %s", fpath, ctx.Path())
 		return
 	}
 
-	bytes, err := os.ReadFile(mdfile)
+	bytes, err := os.ReadFile(fpath)
 	if err != nil {
 		ctx.StatusCode(500)
-		ctx.Application().Logger().Errorf("ReadFile Error '%s', Path is %s", mdfile, ctx.Path())
+		ctx.Application().Logger().Errorf("ReadFile Error '%s', Path is %s", fpath, ctx.Path())
 		return
 	}
 
-	ctx.ViewData("Article", mdToHtml(bytes))
-
-	ctx.View("index.html")
+	if ftype == "img" {
+		ctx.Header("Content-Type", "image/png")
+		ctx.Write(bytes)
+	} else {
+		ctx.ViewData("Article", mdToHtml(bytes))
+		ctx.View("index.html")
+	}
 }
 
 func mdToHtml(content []byte) template.HTML {
