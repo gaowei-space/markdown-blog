@@ -9,6 +9,8 @@ gitalk:
   client-secret: "Your github oauth app client-secret, required fields. eg: 510d1a6bb875fd5031f0d613cd606b1d"
   repo: "Github repo for gitalk, required fields. eg: blog-issue"
   owner: "Your github account, required fields."
+#  api: "Reverse proxy of api.github.com, optional."
+#  cors: "Replace gitalk's corsproxy, optional."
   admin:
     - "Your github account"
   labels:
