@@ -99,10 +99,10 @@ func initParams(ctx *cli.Context) {
 	Env = ctx.String("env")
 	Title = ctx.String("title")
 	Index = ctx.String("index")
-
-	Cache = time.Minute * 0
-	if Env == "prod" {
-		Cache = time.Minute * 3
+	cache := int64(ctx.Int("cache"))
+	Cache = time.Minute * time.Duration(cache)
+	if Env == "dev" {
+		Cache = time.Minute * 0
 	}
 
 	// 设置分析器
