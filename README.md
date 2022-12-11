@@ -337,5 +337,17 @@ server {
     make package-all
     ```
 
+## 意见反馈
+- 在项目中遇到问题可以在 [issues](https://github.com/gaowei-space/markdown-blog/issues) 中找找答案或者直接提问
+- 有任何建议和想法，可以在 [discussions](https://github.com/gaowei-space/markdown-blog/discussions) 中发起讨论
+
+
+## 赞助商
+- 感谢 [JetBrains](https://www.jetbrains.com/?from=gaowei-space/markdown-blog) 对本项目的支持！
+
+<a href="https://www.jetbrains.com/?from=gaowei-space/markdown-blog" target="_blank">
+    <img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" width="100" height="100">
+</a>
+
 ## 授权许可
 本项目采用 MIT 开源授权许可证，完整的授权说明已放置在 [LICENSE](https://github.com/gaowei-space/markdown-blog/blob/main/LICENSE) 文件中。
