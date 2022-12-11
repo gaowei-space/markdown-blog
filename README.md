@@ -337,6 +337,11 @@ server {
     make package-all
     ```
 
+## 意见反馈
+- 在项目中遇到问题可以在 [issues](https://github.com/gaowei-space/markdown-blog/issues) 中找找答案或者直接提问
+- 有功能建议和任何想法，可以在 [discussions](https://github.com/gaowei-space/markdown-blog/discussions) 中发起讨论
+
+
 ## 赞助商
 - 感谢 [JetBrains](https://www.jetbrains.com/?from=gaowei-space/markdown-blog) 对本项目的支持！
 
