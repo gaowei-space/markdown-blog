@@ -339,7 +339,7 @@ server {
 
 ## 意见反馈
 - 在项目中遇到问题可以在 [issues](https://github.com/gaowei-space/markdown-blog/issues) 中找找答案或者直接提问
-- 有任何功能建议和想法，可以在 [discussions](https://github.com/gaowei-space/markdown-blog/discussions) 中发起讨论
+- 有任何建议和想法，可以在 [discussions](https://github.com/gaowei-space/markdown-blog/discussions) 中发起讨论
 
 
 ## 赞助商
