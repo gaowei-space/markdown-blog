@@ -366,3 +366,20 @@
     background: #252737;
     font-weight: 600;
 }
+
+.book-footer{
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.book-footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.book-footer a:hover {
+    text-decoration: underline;
+}

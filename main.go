@@ -133,6 +133,12 @@ func webCommand() *cli.Command {
 			Value:   "",
 			Usage:   "Set up Google Analyzer, default is empty",
 		}),
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:    "analyzer-google-ad",
+			Aliases: []string{"ad"},
+			Value:   "",
+			Usage:   "Set up Google AdSense, default is empty",
+		}),
 	}
 
 	flags = append(flags, analyzerFlags...)

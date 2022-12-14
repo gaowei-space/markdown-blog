@@ -18,6 +18,7 @@ gitalk:
 
 analyzer-baidu: "Your Baidu analyzer code"
 analyzer-google: "Your Google analyzer code"
+analyzer-google-ad: "Your Google AdSense code"
 
 ignore-file:
   - "demo.md"

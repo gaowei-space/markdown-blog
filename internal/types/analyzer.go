@@ -3,11 +3,13 @@ package types
 
 // 分析器
 type Analyzer struct {
-	Baidu  string `json:"baidu"`
-	Google string `json:"google"`
+	Baidu    string `json:"baidu"`
+	Google   string `json:"google"`
+	GoogleAd string `json:"google-ad"`
 }
 
-func (a *Analyzer) SetAnalyzer(b string, g string) {
+func (a *Analyzer) SetAnalyzer(b string, g string, ad string) {
 	a.Baidu = b
 	a.Google = g
+	a.GoogleAd = ad
 }

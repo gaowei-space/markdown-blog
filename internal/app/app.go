@@ -106,7 +106,7 @@ func initParams(ctx *cli.Context) {
 	}
 
 	// 设置分析器
-	Analyzer.SetAnalyzer(ctx.String("analyzer-baidu"), ctx.String("analyzer-google"))
+	Analyzer.SetAnalyzer(ctx.String("analyzer-baidu"), ctx.String("analyzer-google"), ctx.String("analyzer-google-ad"))
 
 	// 设置Gitalk
 	Gitalk.SetGitalk(ctx.String("gitalk.client-id"), ctx.String("gitalk.client-secret"), ctx.String("gitalk.repo"), ctx.String("gitalk.owner"), ctx.StringSlice("gitalk.admin"), ctx.StringSlice("gitalk.labels"), ctx.String("gitalk.api"), ctx.String("gitalk.cors"))

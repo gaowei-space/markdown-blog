@@ -5,7 +5,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{{ .Title }}</title>
-
+	{{if .Analyzer.GoogleAd}}
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{.Analyzer.GoogleAd}}"
+			crossorigin="anonymous"></script>
+	{{end}}
 	<link rel="stylesheet" id="theme-css" href="/static/css/github-markdown-css/dark.css">
 	<link rel="stylesheet" href="/static/css/gitbook-theme/style.css">
 	<link rel="stylesheet" href="/static/css/gitbook-theme/website.css">
