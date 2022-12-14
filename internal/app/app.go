@@ -239,6 +239,13 @@ func articleHandler(ctx iris.Context) {
 		ctx.Header("Content-Type", "image/png")
 		ctx.Write(bytes)
 	} else {
+		tmp := strings.Split(f, "/")
+		title := tmp[len(tmp)-1]
+		if strings.Contains(title, "@") {
+			tmp = strings.Split(title, "@")
+			title = tmp[len(tmp)-1]
+		}
+		ctx.ViewData("Title", title+" - "+Title)
 		ctx.ViewData("Article", mdToHtml(bytes))
 		ctx.View("index.html")
 	}
