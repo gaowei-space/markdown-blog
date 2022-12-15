@@ -26,6 +26,7 @@ var (
 	MdDir      string
 	Env        string
 	Title      string
+	HeadTitle  string
 	Index      string
 	LayoutFile = "layouts/layout.html"
 	LogsDir    = "cache/logs/"
@@ -73,6 +74,7 @@ func RunWeb(ctx *cli.Context) error {
 		ctx.ViewData("Gitalk", Gitalk)
 		ctx.ViewData("Analyzer", Analyzer)
 		ctx.ViewData("Title", Title)
+		ctx.ViewData("HeadTitle", Title)
 		ctx.ViewData("Nav", navs)
 		ctx.ViewData("ActiveNav", activeNav)
 		ctx.ViewLayout(LayoutFile)
@@ -245,7 +247,7 @@ func articleHandler(ctx iris.Context) {
 			tmp = strings.Split(title, "@")
 			title = tmp[len(tmp)-1]
 		}
-		ctx.ViewData("Title", title+" - "+Title)
+		ctx.ViewData("HeadTitle", title+" - "+Title)
 		ctx.ViewData("Article", mdToHtml(bytes))
 		ctx.View("index.html")
 	}
