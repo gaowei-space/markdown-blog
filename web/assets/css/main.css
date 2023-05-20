@@ -58,3 +58,20 @@ body {
 .color-theme-2 .logo a {
     color: white;
 }
+.footer {
+    padding: 22px 0;
+    border-top: 1px solid hsla(210, 18%, 87%, 1);
+    color: #464d69;
+}
+
+.footer .link {
+    color: #464d69;
+}
+
+.footer .link:hover {
+    color: #6d7491;
+}
+
+.color-theme-2 .footer {
+    border-top: 1px solid #21262d;
+}

@@ -118,7 +118,7 @@ func initParams(ctx *cli.Context) {
 
 	Cache = time.Minute * 0
 	if Env == "prod" {
-		Cache = time.Minute * 3
+		Cache = time.Minute * time.Duration(ctx.Int64("cache"))
 	}
 
 	// 设置分析器
