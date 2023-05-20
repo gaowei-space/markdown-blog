@@ -151,6 +151,9 @@ docker run -dit --rm --name=markdown-blog \
    - --env value, -e value          运行环境, 可选：dev,test,prod，默认："prod"
    - --index value, -i value        设置默认首页的文件名称, 默认为空
    - --cache value, -c value        设置页面缓存时间，单位分钟，默认3分钟
+   - --icp value                    ICP备案号, 默认为空
+   - --copyright value              版权年份，默认当前年份，如：2023，在配置了ICP后才有效
+   - --fdir value                   markdown目录下的静态资源目录名称，比如图片等，默认"public"
    - --analyzer-baidu value         设置百度分析统计器
    - --analyzer-google value        设置谷歌分析统计器
    - --gitalk.client-id value       设置 Gitalk ClientId, 默认为空

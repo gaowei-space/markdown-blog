@@ -144,24 +144,27 @@ docker run -dit --rm --name=markdown-blog \
     - h to view the version
     - web to run the blog service
 - markdown-blog web
-   - -config FILE Load configuration file, default is empty
-   - -dir value, -d value Specify the markdown folder, default: . /md/
-   - -title value, -t value web service title, default: "Blog"
-   - -port value, -p value web service port, default: 5006
-   - -env value, -e value runtime environment, optional: dev,test,prod, default: "prod"
-   - -index value, -i value Set the default home page file name, default is empty
-   - -cache value, -c value Set the page cache time, in minutes, default is 3 minutes
-   - -analyzer-baidu value Set Baidu analyzer statistics
-   - -analyzer-google value Set Google analyzer statistics
-   - -gitalk.client-id value Set Gitalk ClientId, default is null
-   - -gitalk.client-secret value Set Gitalk ClientSecret, default is null
-   - -gitalk.repo value Set Gitalk Repo, default is null
-   - -gitalk.owner value Set Gitalk Owner, default is null
-   - -gitalk.admin set Gitalk Admin, default is array [gitalk.owner]
-   - -gitalk.labels set Gitalk Admin, default is array ["gitalk"].
-   - -ignore-file value Set ignore file, eg: demo.md
-   - -ignore-path value Set ignore folders, eg: demo
-   -h View version
+   - -config FILE                   Load configuration file, default is empty
+   - -dir value, -d value           Specify the markdown folder, default: . /md/
+   - -title value, -t value         Web service title, default: "Blog"
+   - -port value, -p value          Web service port, default: 5006
+   - -env value, -e value           Runtime environment, optional: dev,test,prod, default: "prod"
+   - -index value, -i value         Set the default home page file name, default is empty
+   - -cache value, -c value         Set the page cache time, in minutes, default is 3 minutes
+   - --icp value                    ICP record number, default is empty
+   - --copyright value              Copyright year, default current year, such as: 2023
+   - --fdir value                   The name of the static resource directory under the markdown directory, such as pictures, etc., the default is "public"
+   - -analyzer-baidu value          Set Baidu analyzer statistics
+   - -analyzer-google value         Set Google analyzer statistics
+   - -gitalk.client-id value        Set Gitalk ClientId, default is null
+   - -gitalk.client-secret value    Set Gitalk ClientSecret, default is null
+   - -gitalk.repo value             Set Gitalk Repo, default is null
+   - -gitalk.owner value            Set Gitalk Owner, default is null
+   - -gitalk.admin value            Set Gitalk Admin, default is array [gitalk.owner]
+   - -gitalk.labels value           Set Gitalk Admin, default is array ["gitalk"].
+   - -ignore-file value             Set ignore file, eg: demo.md
+   - -ignore-path value             Set ignore folders, eg: demo
+   - -h Help
 
 ### Run parameters
 > Support reading configuration items from configuration file, but specify parameters to take precedence over configuration file at runtime, refer to `config/config.yml.tmp` for configuration content
