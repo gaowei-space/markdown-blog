@@ -4,5 +4,5 @@ cache/
 package/
 build/
 config/*
-internal/bindata
+internal/bindata/*
 !config/config.yml.tmp
