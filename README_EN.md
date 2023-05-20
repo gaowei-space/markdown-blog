@@ -32,6 +32,14 @@ Dark | Light
 > Windows, Linux, Mac OS
 
 ## Updates
+* `[v1.1.1]` 2023-05-20
+  - Support setting record number
+  - Fix cache parameter invalidation
+  - Support reading local files, including but not limited to pictures
+  - windows environment parsing problem
+  - MD folder, read only markdonw files
+  - Other known issues fixed
+
 * `[v1.1.0]` 2022-11-26
   - Support for comments
   - Parameter setting, support reading from local file (config.yml)
