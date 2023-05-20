@@ -275,7 +275,10 @@ func mdToHtml(content []byte) template.HTML {
 		Flags: htmlFlags,
 	})
 
-	unsafe := blackfriday.Run([]byte(strs), blackfriday.WithRenderer(renderer), blackfriday.WithExtensions(blackfriday.CommonExtensions))
+	// fix windows \r\n
+	unix := strings.ReplaceAll(strs, "\r\n", "\n")
+
+	unsafe := blackfriday.Run([]byte(unix), blackfriday.WithRenderer(renderer), blackfriday.WithExtensions(blackfriday.CommonExtensions))
 	html := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
 
 	return template.HTML(string(html))
