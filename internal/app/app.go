@@ -17,6 +17,7 @@ import (
 	"github.com/gaowei-space/markdown-blog/internal/utils"
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/middleware/accesslog"
+	"github.com/kataras/iris/v12/view"
 	"github.com/microcosm-cc/bluemonday"
 	"github.com/russross/blackfriday/v2"
 	"github.com/urfave/cli/v2"
@@ -47,8 +48,7 @@ func RunWeb(ctx *cli.Context) error {
 
 	setLog(app)
 
-	tmpl := iris.HTML(views.AssetFile(), ".html").Reload(true)
-	app.RegisterView(tmpl)
+	app.RegisterView(getTmpl())
 	app.OnErrorCode(iris.StatusNotFound, api.NotFound)
 	app.OnErrorCode(iris.StatusInternalServerError, api.InternalServerError)
 
@@ -81,12 +81,28 @@ func RunWeb(ctx *cli.Context) error {
 	})
 
 	app.Favicon("./favicon.ico")
-	app.HandleDir("/static", assets.AssetFile())
+	app.HandleDir("/static", getStatic())
 	app.Get("/{f:path}", iris.Cache(Cache), articleHandler)
 
 	app.Run(iris.Addr(":" + strconv.Itoa(parsePort(ctx))))
 
 	return nil
+}
+
+func getStatic() interface{} {
+	if Env == "prod" {
+		return assets.AssetFile()
+	} else {
+		return "./web/assets"
+	}
+}
+
+func getTmpl() *view.HTMLEngine {
+	if Env == "prod" {
+		return iris.HTML(views.AssetFile(), ".html").Reload(true)
+	} else {
+		return iris.HTML("./web/views", ".html").Reload(true)
+	}
 }
 
 func initParams(ctx *cli.Context) {
