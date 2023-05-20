@@ -90,7 +90,12 @@ func webCommand() *cli.Command {
 		altsrc.NewIntFlag(&cli.IntFlag{
 			Name:  "copyright",
 			Value: time.Now().Year(),
-			Usage: "copyright, default the current year",
+			Usage: "Copyright, default the current year",
+		}),
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:  "fdir",
+			Value: "public",
+			Usage: "File directory name",
 		}),
 	}
 

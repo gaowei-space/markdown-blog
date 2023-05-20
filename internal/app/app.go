@@ -1,6 +1,7 @@
 package app
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"os"
@@ -29,6 +30,7 @@ var (
 	Title      string
 	Index      string
 	ICP        string
+	FDir       string
 	Copyright  int64
 	LayoutFile = "layouts/layout.html"
 	LogsDir    = "cache/logs/"
@@ -87,6 +89,7 @@ func RunWeb(ctx *cli.Context) error {
 	app.Favicon("./favicon.ico")
 	app.HandleDir("/static", getStatic())
 	app.Get("/{f:path}", iris.Cache(Cache), articleHandler)
+	app.Get(fmt.Sprintf("/%s/{f:path}", FDir), serveFileHandler)
 
 	app.Run(iris.Addr(":" + strconv.Itoa(parsePort(ctx))))
 
@@ -121,6 +124,7 @@ func initParams(ctx *cli.Context) {
 	Index = ctx.String("index")
 	ICP = ctx.String("icp")
 	Copyright = ctx.Int64("copyright")
+	FDir = ctx.String("fdir")
 
 	Cache = time.Minute * 0
 	if Env == "prod" {
@@ -135,6 +139,7 @@ func initParams(ctx *cli.Context) {
 
 	// 忽略文件
 	IgnoreFile = append(IgnoreFile, ctx.StringSlice("ignore-file")...)
+	IgnorePath = append(IgnorePath, FDir)
 	IgnorePath = append(IgnorePath, ctx.StringSlice("ignore-path")...)
 }
 
@@ -220,6 +225,12 @@ func getActiveNav(ctx iris.Context) string {
 		f = Index
 	}
 	return f
+}
+
+func serveFileHandler(ctx iris.Context) {
+	f := ctx.Params().Get("f")
+	file := MdDir + "/" + FDir + "/" + f
+	ctx.ServeFile(file)
 }
 
 func articleHandler(ctx iris.Context) {
