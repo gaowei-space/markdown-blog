@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"time"
 
 	"github.com/gaowei-space/markdown-blog/internal/app"
 	"github.com/gaowei-space/markdown-blog/internal/utils"
@@ -80,6 +81,16 @@ func webCommand() *cli.Command {
 			Aliases: []string{"c"},
 			Value:   3,
 			Usage:   "The cache time unit is minutes, this parameter takes effect in the prod environment",
+		}),
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:  "icp",
+			Value: "",
+			Usage: "ICP, default is empty",
+		}),
+		altsrc.NewIntFlag(&cli.IntFlag{
+			Name:  "copyright",
+			Value: time.Now().Year(),
+			Usage: "copyright, default the current year",
 		}),
 	}
 

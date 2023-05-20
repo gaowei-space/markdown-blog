@@ -28,6 +28,8 @@ var (
 	Env        string
 	Title      string
 	Index      string
+	ICP        string
+	Copyright  int64
 	LayoutFile = "layouts/layout.html"
 	LogsDir    = "cache/logs/"
 	TocPrefix  = "[toc]"
@@ -74,6 +76,8 @@ func RunWeb(ctx *cli.Context) error {
 		ctx.ViewData("Analyzer", Analyzer)
 		ctx.ViewData("Title", Title)
 		ctx.ViewData("Nav", navs)
+		ctx.ViewData("ICP", ICP)
+		ctx.ViewData("Copyright", Copyright)
 		ctx.ViewData("ActiveNav", activeNav)
 		ctx.ViewLayout(LayoutFile)
 
@@ -115,6 +119,8 @@ func initParams(ctx *cli.Context) {
 	Env = ctx.String("env")
 	Title = ctx.String("title")
 	Index = ctx.String("index")
+	ICP = ctx.String("icp")
+	Copyright = ctx.Int64("copyright")
 
 	Cache = time.Minute * 0
 	if Env == "prod" {
