@@ -3,9 +3,9 @@ package api
 import "github.com/kataras/iris/v12"
 
 func NotFound(ctx iris.Context) {
-	ctx.View("web/views/errors/404.html")
+	ctx.View("errors/404.html")
 }
 
 func InternalServerError(ctx iris.Context) {
-	ctx.View("web/views/errors/500.html")
+	ctx.View("errors/500.html")
 }

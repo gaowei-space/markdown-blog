@@ -107,7 +107,7 @@ func explorerRecursive(node *Node, option *Option) {
 
 		// 目录
 		if f.IsDir() {
-			//查找子目录
+			// 查找子目录
 			if option.SubFlag {
 				// 不在忽略目录中的目录，进行递归查找
 				if !IsInSlice(option.IgnorePath, f.Name()) {
@@ -116,10 +116,17 @@ func explorerRecursive(node *Node, option *Option) {
 				}
 			}
 		} else { // 文件
-			// 非忽略文件，添加到结果中
-			if !IsInSlice(option.IgnoreFile, f.Name()) {
-				node.Children = append(node.Children, &child)
+			// 过滤非md文件
+			if path.Ext(f.Name()) != ".md" {
+				continue
 			}
+
+			// 非忽略文件，添加到结果中
+			if IsInSlice(option.IgnoreFile, f.Name()) {
+				continue
+			}
+
+			node.Children = append(node.Children, &child)
 		}
 	}
 }
