@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="/static/css/gitbook-theme/splitter.css">
 	<link rel="stylesheet" href="/static/css/highlight-theme/a11y-dark.css">
 	<link rel="stylesheet" href="/static/css/main.css">
+	<link href="http://www.beitai.cc:9999/dist/Artalk.css" rel="stylesheet">
 
 	{{ if .Gitalk.ClientID }}
 	<link rel="stylesheet" href="/static/css/gitalk/gitalk.css">
@@ -80,6 +81,20 @@
 <script src="/static/js/chapter-fold.js"></script>
 <script src="/static/js/splitter.js"></script>
 <script src="/static/js/main.js"></script>
+<script src="http://www.beitai.cc:9999/dist/Artalk.js"></script>
+
+<div id="Comments"></div>
+<script>
+Artalk.init({
+  el:        '#Comments',                // 绑定元素的 Selector
+  pageKey:   '',                  // 固定链接 (留空自动获取)
+  pageTitle: '',  // 页面标题 (留空自动获取)
+  server:    'http://www.beitai.cc:9999',  // 后端地址
+  site:      '备胎书屋',             // 你的站点名
+})
+</script>
+
+
 {{ if .Gitalk.ClientID }}
 <script src="/static/js/gitalk.min.js"></script>
 <script>
