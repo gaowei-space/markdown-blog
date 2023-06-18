@@ -61,16 +61,16 @@
 		</div>
 		<div class="book-body">
 			<div class="body-inner">
-				{{ render "layouts/header.html" }}
+				{{ render "layouts/header.html" . }}
 				<div class="page-wrapper" tabindex="-1" role="main">
 					<div class="page-inner">
 						<!-- Render the current template here -->
-						{{ yield }}
+						{{ yield . }}
 						<div id="gitalk"></div>
 						<a href="#book-header" class="navigation-go-top"><i class="fa fa-arrow-up"></i></a>
 					</div>
 				</div>
-				{{ render "layouts/footer.html" }}
+				{{ render "layouts/footer.html" . }}
 			</div>
 		</div>
 	</div>
