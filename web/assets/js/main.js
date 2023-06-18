@@ -22,7 +22,7 @@
 
     function getThemeState() {
         var themeState = JSON.parse(sessionStorage.getItem(KEY_THEME_STATE)) || {};
-        themeState.color !== undefined || (themeState.color = 'dark');
+        themeState.color === 'undefined' || (themeState.color = Theme.color || 'dark');
         return themeState;
     }
 

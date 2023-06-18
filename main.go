@@ -145,6 +145,16 @@ func webCommand() *cli.Command {
 
 	flags = append(flags, analyzerFlags...)
 
+	themeFlags := []cli.Flag{
+		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:  "theme.color",
+			Value: "dark",
+			Usage: "Set theme color, default is dark",
+		}),
+	}
+
+	flags = append(flags, themeFlags...)
+
 	ignoreFlags := []cli.Flag{
 		altsrc.NewStringSliceFlag(&cli.StringSliceFlag{
 			Name:  "ignore-file",

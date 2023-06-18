@@ -40,6 +40,7 @@ var (
 	Cache      time.Duration
 	Analyzer   types.Analyzer
 	Gitalk     types.Gitalk
+	Theme      types.Theme
 )
 
 // web服务器默认端口
@@ -81,6 +82,7 @@ func RunWeb(ctx *cli.Context) error {
 		ctx.ViewData("ICP", ICP)
 		ctx.ViewData("Copyright", Copyright)
 		ctx.ViewData("ActiveNav", activeNav)
+		ctx.ViewData("Theme", Theme)
 		ctx.ViewLayout(LayoutFile)
 
 		ctx.Next()
@@ -130,6 +132,9 @@ func initParams(ctx *cli.Context) {
 	if Env == "prod" {
 		Cache = time.Minute * time.Duration(ctx.Int64("cache"))
 	}
+
+	// 设置主题
+	Theme.SetTheme(ctx.String("theme.color"))
 
 	// 设置分析器
 	Analyzer.SetAnalyzer(ctx.String("analyzer-baidu"), ctx.String("analyzer-google"))
