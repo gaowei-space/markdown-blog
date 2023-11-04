@@ -95,7 +95,7 @@ func explorerRecursive(node *Node, option *Option) {
 		// 目录（或文件）名
 		child.Name = f.Name()
 		// 访问路径
-		child.Link = strings.TrimPrefix(strings.TrimSuffix(tmp, path.Ext(f.Name())), CurDirPath)
+		child.Link = CustomURLEncode(strings.TrimPrefix(strings.TrimSuffix(tmp, path.Ext(f.Name())), CurDirPath))
 
 		// 目录或文件名（不包含后缀）
 		child.ShowName = strings.TrimSuffix(f.Name(), path.Ext(f.Name()))
