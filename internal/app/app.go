@@ -66,7 +66,7 @@ func RunWeb(ctx *cli.Context) error {
 
 		navs, firstNav := getNavs(activeNav)
 
-		firstLink := strings.TrimPrefix(firstNav.Link, "/")
+		firstLink := utils.CustomURLEncode(strings.TrimPrefix(firstNav.Link, "/"))
 		if setIndexAuto && Index != firstLink {
 			Index = firstLink
 		}
