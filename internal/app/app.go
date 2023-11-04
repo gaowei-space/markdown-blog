@@ -30,6 +30,7 @@ var (
 	Title      string
 	Index      string
 	ICP        string
+	ISF        string
 	FDir       string
 	Copyright  int64
 	LayoutFile = "layouts/layout.html"
@@ -79,6 +80,7 @@ func RunWeb(ctx *cli.Context) error {
 		ctx.ViewData("Title", Title)
 		ctx.ViewData("Nav", navs)
 		ctx.ViewData("ICP", ICP)
+		ctx.ViewData("ISF", ISF)
 		ctx.ViewData("Copyright", Copyright)
 		ctx.ViewData("ActiveNav", activeNav)
 		ctx.ViewLayout(LayoutFile)
@@ -123,6 +125,7 @@ func initParams(ctx *cli.Context) {
 	Title = ctx.String("title")
 	Index = ctx.String("index")
 	ICP = ctx.String("icp")
+	ISF = ctx.String("isf")
 	Copyright = ctx.Int64("copyright")
 	FDir = ctx.String("fdir")
 

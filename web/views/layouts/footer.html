@@ -1,5 +1,9 @@
 {{ if .ICP }}
 <div class="footer">
-    <p>© Copyright {{.Copyright}} <a class="link" href="https://beian.miit.gov.cn">{{.ICP}}</a></p>
+    <p>© Copyright {{.Copyright}} <a class="link" href="https://beian.miit.gov.cn">{{.ICP}}</a> 
+        {{ if .ISF }}
+        <a class="link" href="https://beian.mps.gov.cn">{{.ISF}}</a>
+        {{ end }}
+    </p>
 </div>
 {{ end }}
