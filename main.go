@@ -86,6 +86,10 @@ func webCommand() *cli.Command {
 			Name:  "icp",
 			Value: "",
 			Usage: "ICP, default is empty",
+		}), altsrc.NewStringFlag(&cli.StringFlag{
+			Name:  "isf",
+			Value: "",
+			Usage: "National Internet Security Filing, default is empty",
 		}),
 		altsrc.NewIntFlag(&cli.IntFlag{
 			Name:  "copyright",
