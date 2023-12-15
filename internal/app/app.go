@@ -258,7 +258,9 @@ func articleHandler(ctx iris.Context) {
 		ctx.Application().Logger().Errorf("ReadFile Error '%s', Path is %s", mdfile, ctx.Path())
 		return
 	}
-
+	tmp := strings.Split(f, "/")
+	title := tmp[len(tmp)-1]
+	ctx.ViewData("Title", title+" - "+Title)
 	ctx.ViewData("Article", mdToHtml(bytes))
 
 	ctx.View("index.html")
