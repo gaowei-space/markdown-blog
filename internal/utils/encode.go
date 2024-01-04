@@ -11,7 +11,9 @@ func CustomURLEncode(str string) string {
 
 	for _, part := range parts {
 		if isChinese(part) {
-			part = url.QueryEscape(part)
+			// 使用url.PathEscape而不是url.QueryEscape，处理特殊字符时不转义，如&被转义成%26
+			//part = url.QueryEscape(part)
+			part = url.PathEscape(part)
 		}
 		encodedParts = append(encodedParts, part)
 	}
