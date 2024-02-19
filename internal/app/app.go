@@ -284,7 +284,14 @@ func mdToHtml(content []byte) template.HTML {
 	unix := strings.ReplaceAll(strs, "\r\n", "\n")
 
 	unsafe := blackfriday.Run([]byte(unix), blackfriday.WithRenderer(renderer), blackfriday.WithExtensions(blackfriday.CommonExtensions))
-	html := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
+	
+	// 创建bluemonday策略，只允许<span>标签及其style属性
+	p := bluemonday.UGCPolicy()
+	p.AllowElements("span") // 只允许<span>标签
+	p.AllowAttrs("style").OnElements("span") // 在<span>上允许使用style属性
+
+	// 使用自定义的bluemonday策略来清理HTML
+	html := p.SanitizeBytes(unsafe)
 
 	return template.HTML(string(html))
 }
