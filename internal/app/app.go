@@ -30,6 +30,7 @@ var (
 	Title      string
 	Index      string
 	ICP        string
+	ISF        string
 	FDir       string
 	Copyright  int64
 	LayoutFile = "layouts/layout.html"
@@ -66,7 +67,7 @@ func RunWeb(ctx *cli.Context) error {
 
 		navs, firstNav := getNavs(activeNav)
 
-		firstLink := strings.TrimPrefix(firstNav.Link, "/")
+		firstLink := utils.CustomURLEncode(strings.TrimPrefix(firstNav.Link, "/"))
 		if setIndexAuto && Index != firstLink {
 			Index = firstLink
 		}
@@ -79,6 +80,7 @@ func RunWeb(ctx *cli.Context) error {
 		ctx.ViewData("Title", Title)
 		ctx.ViewData("Nav", navs)
 		ctx.ViewData("ICP", ICP)
+		ctx.ViewData("ISF", ISF)
 		ctx.ViewData("Copyright", Copyright)
 		ctx.ViewData("ActiveNav", activeNav)
 		ctx.ViewLayout(LayoutFile)
@@ -123,6 +125,7 @@ func initParams(ctx *cli.Context) {
 	Title = ctx.String("title")
 	Index = ctx.String("index")
 	ICP = ctx.String("icp")
+	ISF = ctx.String("isf")
 	Copyright = ctx.Int64("copyright")
 	FDir = ctx.String("fdir")
 
@@ -255,7 +258,9 @@ func articleHandler(ctx iris.Context) {
 		ctx.Application().Logger().Errorf("ReadFile Error '%s', Path is %s", mdfile, ctx.Path())
 		return
 	}
-
+	tmp := strings.Split(f, "/")
+	title := tmp[len(tmp)-1]
+	ctx.ViewData("Title", title+" - "+Title)
 	ctx.ViewData("Article", mdToHtml(bytes))
 
 	ctx.View("index.html")
@@ -279,7 +284,14 @@ func mdToHtml(content []byte) template.HTML {
 	unix := strings.ReplaceAll(strs, "\r\n", "\n")
 
 	unsafe := blackfriday.Run([]byte(unix), blackfriday.WithRenderer(renderer), blackfriday.WithExtensions(blackfriday.CommonExtensions))
-	html := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
+	
+	// 创建bluemonday策略，只允许<span>标签及其style属性
+	p := bluemonday.UGCPolicy()
+	p.AllowElements("span") // 只允许<span>标签
+	p.AllowAttrs("style").OnElements("span") // 在<span>上允许使用style属性
+
+	// 使用自定义的bluemonday策略来清理HTML
+	html := p.SanitizeBytes(unsafe)
 
 	return template.HTML(string(html))
 }

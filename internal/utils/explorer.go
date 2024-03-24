@@ -6,6 +6,7 @@ import (
 	"os"
 	"path"
 	"strings"
+	"math/rand"
 )
 
 // Node 树节点
@@ -21,10 +22,10 @@ type Node struct {
 
 // Option 遍历选项
 type Option struct {
-	RootPath   []string `yaml:"rootPath"`   // 目标根目录
-	SubFlag    bool     `yaml:"subFlag"`    // 遍历子目录标志 true: 遍历 false: 不遍历
-	IgnorePath []string `yaml:"ignorePath"` // 忽略目录
-	IgnoreFile []string `yaml:"ignoreFile"` // 忽略文件
+	RootPath         []string `yaml:"rootPath"`         // 目标根目录
+	SubFlag          bool     `yaml:"subFlag"`          // 遍历子目录标志 true: 遍历 false: 不遍历
+	IgnorePath       []string `yaml:"ignorePath"`       // 忽略目录
+	IgnoreFile       []string `yaml:"ignoreFile"`       // 忽略文件
 }
 
 // 当前再循环的Dir路径
@@ -87,6 +88,8 @@ func explorerRecursive(node *Node, option *Option) {
 		return
 	}
 
+	var mdFiles []*Node
+
 	for _, f := range sub {
 		tmp := path.Join(node.Path, f.Name())
 		var child Node
@@ -95,7 +98,7 @@ func explorerRecursive(node *Node, option *Option) {
 		// 目录（或文件）名
 		child.Name = f.Name()
 		// 访问路径
-		child.Link = strings.TrimPrefix(strings.TrimSuffix(tmp, path.Ext(f.Name())), CurDirPath)
+		child.Link = CustomURLEncode(strings.TrimPrefix(strings.TrimSuffix(tmp, path.Ext(f.Name())), CurDirPath))
 
 		// 目录或文件名（不包含后缀）
 		child.ShowName = strings.TrimSuffix(f.Name(), path.Ext(f.Name()))
@@ -126,7 +129,17 @@ func explorerRecursive(node *Node, option *Option) {
 				continue
 			}
 
-			node.Children = append(node.Children, &child)
+			mdFiles = append(mdFiles, &child)
 		}
+	}
+
+	// 超过指定数量的.md文件进行随机展示
+	if len(mdFiles) > 150 {
+		rand.Shuffle(len(mdFiles), func(i, j int) {
+			mdFiles[i], mdFiles[j] = mdFiles[j], mdFiles[i]
+		})
+		node.Children = append(node.Children, mdFiles[:150]...)
+	} else {
+		node.Children = append(node.Children, mdFiles...)
 	}
 }

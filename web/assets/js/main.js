@@ -1,5 +1,6 @@
 (function () {
     hljs.highlightAll();
+    hljs.addPlugin(new CopyButtonPlugin());
 
     var KEY_THEME_STATE = 'blog_theme_state';
     var $book = $('.book');
