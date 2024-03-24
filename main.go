@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"strconv"
 	"time"
 
 	"github.com/gaowei-space/markdown-blog/internal/app"
@@ -91,10 +92,10 @@ func webCommand() *cli.Command {
 			Value: "",
 			Usage: "National Internet Security Filing, default is empty",
 		}),
-		altsrc.NewIntFlag(&cli.IntFlag{
+		altsrc.NewStringFlag(&cli.StringFlag{
 			Name:  "copyright",
-			Value: time.Now().Year(),
-			Usage: "Copyright, default the current year",
+			Value: strconv.Itoa(time.Now().Year()),
+			Usage: "Copyright, default the current year, such as 2024",
 		}),
 		altsrc.NewStringFlag(&cli.StringFlag{
 			Name:  "fdir",
