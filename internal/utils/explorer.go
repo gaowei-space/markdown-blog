@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"io/ioutil"
 	"log"
 	"os"
 	"path"
@@ -81,7 +80,7 @@ func explorerRecursive(node *Node, option *Option) {
 	}
 
 	// 目录中的文件和子目录
-	sub, err := ioutil.ReadDir(node.Path)
+	sub, err := os.ReadDir(node.Path)
 	if err != nil {
 		info := "目录不存在，或打开错误。"
 		log.Printf("%v: %v", info, err)
@@ -102,8 +101,8 @@ func explorerRecursive(node *Node, option *Option) {
 
 		// 目录或文件名（不包含后缀）
 		child.ShowName = strings.TrimSuffix(f.Name(), path.Ext(f.Name()))
-		if strings.Index(child.ShowName, "@") != -1 {
-			child.ShowName = child.ShowName[strings.Index(child.ShowName, "@")+1:]
+		if atIndex := strings.Index(child.ShowName, "@"); atIndex != -1 {
+			child.ShowName = child.ShowName[atIndex+1:]
 		}
 		// 是否为目录
 		child.IsDir = f.IsDir()
