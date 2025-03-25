@@ -54,13 +54,11 @@ func IsInSlice(slice []string, s string) bool {
 		return false
 	}
 
-	isIn := false
 	for _, f := range slice {
 		if f == s {
-			isIn = true
-			break
+			return true
 		}
 	}
 
-	return isIn
+	return false
 }

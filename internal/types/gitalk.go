@@ -2,13 +2,13 @@
 package types
 
 type Gitalk struct {
-	ClientID     string   `json:"client_id"`
-	ClientSecret string   `json:"client_secret"`
-	Repo         string   `json:"repo"`
-	Owner        string   `json:"owner"`
-	Id           string   `json:"id"`
-	Admin        []string `json:"admin"`
-	Labels       []string `json:"labels"`
+	ClientID     string   `json:"client_id"` // 客户端ID
+	ClientSecret string   `json:"client_secret"` // 客户端密钥
+	Repo         string   `json:"repo"` // 仓库名称
+	Owner        string   `json:"owner"` // 仓库所有者
+	Id           string   `json:"id"` // 评论ID
+	Admin        []string `json:"admin"` // 管理员
+	Labels       []string `json:"labels"` // 标签
 }
 
 func (g *Gitalk) SetGitalk(clientID string, clientSecret string, repo string, owner string, admin []string, labels []string) {

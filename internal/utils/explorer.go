@@ -27,7 +27,7 @@ type Option struct {
 	IgnoreFile       []string `yaml:"ignoreFile"`       // 忽略文件
 }
 
-// 当前再循环的Dir路径
+// 当前在循环的Dir路径
 var CurDirPath string
 
 // Explorer 遍历多个目录
@@ -66,13 +66,13 @@ func Explorer(option Option) (Node, error) {
 //	option : 遍历选项
 func explorerRecursive(node *Node, option *Option) {
 	// 节点的信息
-	p, err := os.Stat(node.Path)
+	p, err := os.Stat(node.Path) // 获取节点的文件状态
 	if err != nil {
-		log.Println(err)
+		log.Println(err) // 如果路径无效，记录错误信息
 		return
 	}
 	// 是否为目录
-	node.IsDir = p.IsDir()
+	node.IsDir = p.IsDir() // 判断节点是否为目录
 
 	// 非目录，返回
 	if !p.IsDir() {
@@ -80,7 +80,7 @@ func explorerRecursive(node *Node, option *Option) {
 	}
 
 	// 目录中的文件和子目录
-	sub, err := os.ReadDir(node.Path)
+	sub, err := os.ReadDir(node.Path) // 读取目录中的文件和子目录
 	if err != nil {
 		info := "目录不存在，或打开错误。"
 		log.Printf("%v: %v", info, err)
@@ -90,7 +90,7 @@ func explorerRecursive(node *Node, option *Option) {
 	var mdFiles []*Node
 
 	for _, f := range sub {
-		tmp := path.Join(node.Path, f.Name())
+		tmp := path.Join(node.Path, f.Name()) // 拼接目录路径和文件名
 		var child Node
 		// 完整子目录
 		child.Path = tmp
@@ -123,11 +123,12 @@ func explorerRecursive(node *Node, option *Option) {
 				continue
 			}
 
-			// 非忽略文件，添加到结果中
+			// 过滤忽略文件
 			if IsInSlice(option.IgnoreFile, f.Name()) {
 				continue
 			}
 
+			// 添加到结果中
 			mdFiles = append(mdFiles, &child)
 		}
 	}
@@ -136,9 +137,9 @@ func explorerRecursive(node *Node, option *Option) {
 	if len(mdFiles) > 150 {
 		rand.Shuffle(len(mdFiles), func(i, j int) {
 			mdFiles[i], mdFiles[j] = mdFiles[j], mdFiles[i]
-		})
-		node.Children = append(node.Children, mdFiles[:150]...)
+		}) // 打乱mdFiles中的元素顺序
+		node.Children = append(node.Children, mdFiles[:150]...) // 只保留前150个元素
 	} else {
-		node.Children = append(node.Children, mdFiles...)
+		node.Children = append(node.Children, mdFiles...) // 将mdFiles中的所有元素添加到node.Children中
 	}
 }

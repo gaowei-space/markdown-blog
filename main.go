@@ -30,28 +30,31 @@ func main() {
 	cliApp.Usage = "Markdown Blog App"
 	cliApp.Version, _ = utils.FormatAppVersion(AppVersion, GitCommit, BuildDate)
 	cliApp.Commands = getCommands()
-	cliApp.Flags = append(cliApp.Flags, []cli.Flag{}...)
+	cliApp.Flags = append(cliApp.Flags, []cli.Flag{}...) // 没有定义全局标志，这里为空
 	cliApp.Run(os.Args)
 }
 
+// 获取命令
 func getCommands() []*cli.Command {
 	web := webCommand()
 
 	return []*cli.Command{web}
 }
 
+// 获取web命令
 func webCommand() *cli.Command {
+	// 通用命令
 	commonFlags := []cli.Flag{
 		&cli.StringFlag{
-			Name:  "config",
-			Value: "",
-			Usage: "Load configuration from `FILE`, default is empty",
+			Name:  "config", // 标志的全名 --config 
+			Value: "", // 标志的默认值
+			Usage: "Load configuration from `FILE`, default is empty", // 标志的描述
 		},
 		altsrc.NewStringFlag(&cli.StringFlag{
-			Name:    "dir",
-			Aliases: []string{"d"},
-			Value:   MdDir,
-			Usage:   "Markdown files dir",
+			Name:    "dir", // 标志的全名 --dir
+			Aliases: []string{"d"}, // 标志的别名 -d
+			Value:   MdDir, // 标志的默认值
+			Usage:   "Markdown files dir", // 标志的描述
 		}),
 		altsrc.NewStringFlag(&cli.StringFlag{
 			Name:    "title",
@@ -104,6 +107,7 @@ func webCommand() *cli.Command {
 		}),
 	}
 
+	// gitalk评论系统命令
 	gitalkFlags := []cli.Flag{
 		altsrc.NewStringFlag(&cli.StringFlag{
 			Name:  "gitalk.client-id",
@@ -133,6 +137,7 @@ func webCommand() *cli.Command {
 
 	flags := append(commonFlags, gitalkFlags...)
 
+	// 分析器命令，百度和谷歌
 	analyzerFlags := []cli.Flag{
 		altsrc.NewStringFlag(&cli.StringFlag{
 			Name:    "analyzer-baidu",
@@ -150,6 +155,7 @@ func webCommand() *cli.Command {
 
 	flags = append(flags, analyzerFlags...)
 
+	// 忽略文件和路径命令
 	ignoreFlags := []cli.Flag{
 		altsrc.NewStringSliceFlag(&cli.StringSliceFlag{
 			Name:  "ignore-file",
@@ -169,6 +175,7 @@ func webCommand() *cli.Command {
 		Action: app.RunWeb,
 		Flags:  flags,
 		Before: altsrc.InitInputSourceWithContext(flags, altsrc.NewYamlSourceFromFlagFunc("config")),
+		// 在运行命令之前，从配置文件中读取标志，并将读取的标志绑定到命令的标志上
 	}
 
 	return &web
