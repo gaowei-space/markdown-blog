@@ -4,7 +4,6 @@ cache/
 package/
 build/
 config/*
-internal/bindata/*
 !config/config.yml.tmp
 certs/*
 .DS_Store
