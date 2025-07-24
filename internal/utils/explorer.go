@@ -3,10 +3,10 @@ package utils
 import (
 	"io/ioutil"
 	"log"
+	"math/rand"
 	"os"
 	"path"
 	"strings"
-	"math/rand"
 )
 
 // Node 树节点
@@ -22,10 +22,10 @@ type Node struct {
 
 // Option 遍历选项
 type Option struct {
-	RootPath         []string `yaml:"rootPath"`         // 目标根目录
-	SubFlag          bool     `yaml:"subFlag"`          // 遍历子目录标志 true: 遍历 false: 不遍历
-	IgnorePath       []string `yaml:"ignorePath"`       // 忽略目录
-	IgnoreFile       []string `yaml:"ignoreFile"`       // 忽略文件
+	RootPath   []string `yaml:"rootPath"`   // 目标根目录
+	SubFlag    bool     `yaml:"subFlag"`    // 遍历子目录标志 true: 遍历 false: 不遍历
+	IgnorePath []string `yaml:"ignorePath"` // 忽略目录
+	IgnoreFile []string `yaml:"ignoreFile"` // 忽略文件
 }
 
 // 当前再循环的Dir路径
@@ -97,11 +97,17 @@ func explorerRecursive(node *Node, option *Option) {
 		child.Path = tmp
 		// 目录（或文件）名
 		child.Name = f.Name()
-		// 访问路径
-		child.Link = CustomURLEncode(strings.TrimPrefix(strings.TrimSuffix(tmp, path.Ext(f.Name())), CurDirPath))
+		if !f.IsDir() {
+			// 访问路径
+			child.Link = CustomURLEncode(strings.TrimPrefix(strings.TrimSuffix(tmp, path.Ext(f.Name())), CurDirPath))
 
-		// 目录或文件名（不包含后缀）
-		child.ShowName = strings.TrimSuffix(f.Name(), path.Ext(f.Name()))
+			// 目录或文件名（不包含后缀）
+			child.ShowName = strings.TrimSuffix(f.Name(), path.Ext(f.Name()))
+		} else {
+			// 如果是目录，无需处理后缀
+			child.Link = CustomURLEncode(strings.TrimPrefix(tmp, CurDirPath))
+			child.ShowName = f.Name()
+		}
 		if strings.Index(child.ShowName, "@") != -1 {
 			child.ShowName = child.ShowName[strings.Index(child.ShowName, "@")+1:]
 		}
