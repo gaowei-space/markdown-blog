@@ -15,7 +15,7 @@
 > 如果你和我一样，平时喜欢使用`markdown`文件来记录自己的工作与生活中的点滴，又希望把这些记录生成个人博客，那[Markdown-Blog](https://github.com/gaowei-space/markdown-blog)再适合不过了。它简洁、轻快，部署简单，可以把markdown文件快速变为个人博客，它不需要管理后台，无需进行文章的二次发布。
 
 ## 案例
-> [TechMan'Blog](https://blog.gaowei.tech)
+> [TechMan'Blog](https://blog.willgao.net)
 
 ### Web端
 Style | Preveiw
