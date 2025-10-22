@@ -15,7 +15,7 @@
 > Designed with simplicity and ease-of-use in mind, this application allows users to create and publish blog content without the need for complex web development skills. anyone can use this software to create professional-looking blogs with minimal hassle. Whether you're a blogger, writer, or developer, our static blog generator is an excellent choice for creating fast, stylish, and aesthetically pleasing website.
 
 ## Case
-> [TechMan'Blog](https://blog.gaowei.tech)
+> [TechMan'Blog](https://blog.willgao.net)
 
 ### Web side
 Style | Preveiw
